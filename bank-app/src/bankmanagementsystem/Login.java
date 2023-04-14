@@ -1,6 +1,7 @@
+package bankmanagementsystem;
+
 import java.awt.Image;
 import java.awt.event.ActionListener;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -16,7 +17,7 @@ public class Login extends JFrame implements ActionListener{
 
         setLayout(null);
 
-        ImageIcon il = new ImageIcon(ClassLoader.getSystemResource("icons/logo.jpg"));
+        ImageIcon il = new ImageIcon(ClassLoader.getSystemResource("bankmanagementsystem/icons/logo.jpg"));
         Image i2 = il.getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT);
         ImageIcon i3 = new ImageIcon(i2);
         JLabel label = new JLabel(i3);
@@ -83,7 +84,8 @@ public class Login extends JFrame implements ActionListener{
         } else if (ae.getSource() == login) {
 
         } else if (ae.getSource() == signup){
-
+            setVisible(false);
+            new SignupOne().setVisible(true);
         }
     }
 
