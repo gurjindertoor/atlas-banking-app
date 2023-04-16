@@ -9,7 +9,7 @@ import java.awt.event.*;
 public class SignupTwo extends JFrame implements ActionListener{
 
     long random;
-    JTextField firstNameTextField, middleNameTextField, lastNameTextField, addressTextField, cityTextField, stateTextField, zipcodeTextField, emailTextField, confirmEmailTextField;
+    JTextField occupationTextField, educationTextField, incomeTextField, phoneNumberTextField, mobileNumberTextField;
     JButton next;
     JDateChooser dateChooser;
 
@@ -33,100 +33,164 @@ public class SignupTwo extends JFrame implements ActionListener{
         gender.setBounds(100, 140, 200, 30);
         add(gender);
 
-        firstNameTextField = new JTextField();
-        firstNameTextField.setFont(new Font("Raleway", Font.BOLD, 12));
-        firstNameTextField.setBounds(300, 140, 400, 25);
-        add(firstNameTextField);
+        JRadioButton male = new JRadioButton("Male");
+        JRadioButton female = new JRadioButton("Female");
+        JRadioButton other = new JRadioButton("Other");
+        JRadioButton preferNotDisclose = new JRadioButton("Prefer Not To Disclose");
 
-        // JLabel middleName = new JLabel("Middle Name:");
-        // middleName.setFont(new Font("Raleway", Font.BOLD, 18));
-        // middleName.setBounds(100, 200, 200, 30);
-        // add(middleName);
+        ButtonGroup genderGroup = new ButtonGroup();
+        genderGroup.add(male);
+        genderGroup.add(female);
+        genderGroup.add(other);
+        genderGroup.add(preferNotDisclose);
 
-        // middleNameTextField = new JTextField();
-        // middleNameTextField.setFont(new Font("Raleway", Font.BOLD, 12));
-        // middleNameTextField.setBounds(300, 200, 400, 25);
-        // add(middleNameTextField);
+        male.setBounds(300, 140, 60, 30);
+        female.setBounds(375, 140, 75, 30);
+        other.setBounds(450, 140, 60, 30);
+        preferNotDisclose.setBounds(525, 140, 175, 30);
+
+        male.setBackground(Color.WHITE);
+        female.setBackground(Color.WHITE);
+        other.setBackground(Color.WHITE);
+        preferNotDisclose.setBackground(Color.WHITE);
+
+        add(male);
+        add(female);
+        add(other);
+        add(preferNotDisclose);
 
         JLabel maritalStatus = new JLabel("Marital Status*:");
         maritalStatus.setFont(new Font("Raleway", Font.BOLD, 18));
         maritalStatus.setBounds(100, 200, 200, 30);
         add(maritalStatus);
 
-        lastNameTextField = new JTextField();
-        lastNameTextField.setFont(new Font("Raleway", Font.BOLD, 12));
-        lastNameTextField.setBounds(300, 200, 400, 25);
-        add(lastNameTextField);
+        JRadioButton married = new JRadioButton("Married");
+        JRadioButton divorced = new JRadioButton("Divorced");
+        JRadioButton widowed = new JRadioButton("Widowed");
+        JRadioButton single = new JRadioButton("Single");
+
+        ButtonGroup maritalStatusGroup = new ButtonGroup();
+        maritalStatusGroup.add(married);
+        maritalStatusGroup.add(divorced);
+        maritalStatusGroup.add(widowed);
+        maritalStatusGroup.add(single);
+
+        single.setBounds(300, 200, 75, 30);
+        married.setBounds(375, 200, 75, 30);
+        divorced.setBounds(450, 200, 75, 30);
+        widowed.setBounds(525, 200, 80, 30);
+
+        married.setBackground(Color.WHITE);
+        divorced.setBackground(Color.WHITE);
+        widowed.setBackground(Color.WHITE);
+        single.setBackground(Color.WHITE);
+
+        add(single);
+        add(married);
+        add(divorced);
+        add(widowed);
 
         JLabel occupation = new JLabel("Occupation*:");
         occupation.setFont(new Font("Raleway", Font.BOLD, 18));
         occupation.setBounds(100, 260, 200, 30);
         add(occupation);
 
-        dateChooser = new JDateChooser();
-        dateChooser.setBounds(300, 260, 400, 30);
-        dateChooser.setForeground(Color.BLACK);
-        add(dateChooser);
+        String occupationList[] = {"Accounting/Finance", "Administrative/Clerical", "Advertising/Public Relations", "Aerospace/Aviation/Defense", "Arts/Entertainment/Publishing", "Banking/Mortgage", "Business Development", "Construction/Facilities", "Consulting", "Customer Service/Call Center", "Education/Training", "Engineering", "Government/Military", "Healthcare", "Hospitality/Travel", "Human Resources", "Information Technology", "Insurance", "Internet/New Media", "Law Enforcement/Security", "Legal", "Manufacturing/Operations", "Marketing", "Non-Profit/Volunteer", "Other", "Pharmaceutical/Biotech", "Project/Program Management", "Real Estate", "Restaurant/Food Service", "Retail", "Sales", "Science/Research", "Telecommunications", "Transportation/Logistics", "Upper Management/Consulting", "Warehouse/Inventory Management"};
+        JComboBox occupations = new JComboBox(occupationList);
+        occupations.setFont(new Font("Raleway", Font.BOLD, 12));
+        occupations.setBackground(Color.WHITE);
+        occupations.setBounds(300, 260, 400, 30);
+        add(occupations);
 
         JLabel education = new JLabel("Education*:");
         education.setFont(new Font("Raleway", Font.BOLD, 18));
         education.setBounds(100, 320, 200, 30);
         add(education);
 
-        addressTextField = new JTextField();
-        addressTextField.setFont(new Font("Raleway", Font.BOLD, 12));
-        addressTextField.setBounds(300, 320, 400, 25);
-        add(addressTextField);
+        String educationList[] = {"High School Diploama/Equivalent", "Some College", "Associates Degree", "Undergraduate Degree", "Master's Degree", "Doctorate", "Other"};
+        JComboBox educations = new JComboBox(educationList);
+        educations.setFont(new Font("Raleway", Font.BOLD, 12));
+        educations.setBackground(Color.WHITE);
+        educations.setBounds(300, 320, 400, 30);
+        add(educations);
 
-        JLabel income = new JLabel("Income*:");
+        JLabel income = new JLabel("Annual Income*:");
         income.setFont(new Font("Raleway", Font.BOLD, 18));
         income.setBounds(100, 380, 200, 30);
         add(income);
 
-        cityTextField = new JTextField();
-        cityTextField.setFont(new Font("Raleway", Font.BOLD, 12));
-        cityTextField.setBounds(300, 380, 400, 25);
-        add(cityTextField);
+        String incomeList[] = {"Less than $25,000", "$25,000 - $50,000", "$50,000 - $75,000", "$75,000 - $100,000", "$100,000 - $150,000", "$150,000 or more"};
+        JComboBox incomes = new JComboBox(incomeList);
+        incomes.setFont(new Font("Raleway", Font.BOLD, 12));
+        incomes.setBackground(Color.WHITE);
+        incomes.setBounds(300, 380, 400, 25);
+        add(incomes);
+
+        incomeTextField = new JTextField();
+        incomeTextField.setFont(new Font("Raleway", Font.BOLD, 12));
+        incomeTextField.setBounds(300, 380, 400, 25);
+        add(incomeTextField);
 
         JLabel phoneNumber = new JLabel("Phone Number*:");
         phoneNumber.setFont(new Font("Raleway", Font.BOLD, 18));
         phoneNumber.setBounds(100, 440, 200, 30);
         add(phoneNumber);
 
-        stateTextField = new JTextField();
-        stateTextField.setFont(new Font("Raleway", Font.BOLD, 12));
-        stateTextField.setBounds(300, 440, 400, 25);
-        add(stateTextField);
+        phoneNumberTextField = new JTextField();
+        phoneNumberTextField.setFont(new Font("Raleway", Font.BOLD, 12));
+        phoneNumberTextField.setBounds(300, 440, 400, 25);
+        add(phoneNumberTextField);
 
         JLabel mobileNumber = new JLabel("Mobile Number*:");
         mobileNumber.setFont(new Font("Raleway", Font.BOLD, 18));
         mobileNumber.setBounds(100, 500, 200, 30);
         add(mobileNumber);
 
-        zipcodeTextField = new JTextField();
-        zipcodeTextField.setFont(new Font("Raleway", Font.BOLD, 12));
-        zipcodeTextField.setBounds(300, 500, 400, 25);
-        add(zipcodeTextField);
+        mobileNumberTextField = new JTextField();
+        mobileNumberTextField.setFont(new Font("Raleway", Font.BOLD, 12));
+        mobileNumberTextField.setBounds(300, 500, 400, 25);
+        add(mobileNumberTextField);
 
         JLabel accountType = new JLabel("Account Type*:");
         accountType.setFont(new Font("Raleway", Font.BOLD, 18));
         accountType.setBounds(100, 560, 200, 30);
         add(accountType);
 
-        emailTextField = new JTextField();
-        emailTextField.setFont(new Font("Raleway", Font.BOLD, 12));
-        emailTextField.setBounds(300, 560, 400, 25);
-        add(emailTextField);
+        JRadioButton checking = new JRadioButton("Checking Account");
+        JRadioButton saving = new JRadioButton("Saving Account");
 
-        JLabel contactMethod = new JLabel("Preferred Contact Method*:");
-        contactMethod.setFont(new Font("Raleway", Font.BOLD, 18));
-        contactMethod.setBounds(100, 620, 400, 30);
-        add(contactMethod);
+        ButtonGroup accountTypeGroup = new ButtonGroup();
+        accountTypeGroup.add(checking);
+        accountTypeGroup.add(saving);
 
-        confirmEmailTextField = new JTextField();
-        confirmEmailTextField.setFont(new Font("Raleway", Font.BOLD, 12));
-        confirmEmailTextField.setBounds(300, 620, 400, 25);
-        add(confirmEmailTextField);
+        checking.setBounds(300, 560, 150, 30);
+        checking.setBackground(Color.WHITE);
+        saving.setBounds(450, 560, 200, 30);
+        saving.setBackground(Color.WHITE);
+
+        add(checking);
+        add(saving);
+
+        JLabel creditCard = new JLabel("Applying for Credit Card?*:");
+        creditCard.setFont(new Font("Raleway", Font.BOLD, 18));
+        creditCard.setBounds(100, 620, 400, 30);
+        add(creditCard);
+
+        JRadioButton creditCardYes = new JRadioButton("Yes");
+        JRadioButton creditCardNo = new JRadioButton("No");
+
+        ButtonGroup creditCardGroup = new ButtonGroup();
+        creditCardGroup.add(creditCardYes);
+        creditCardGroup.add(creditCardNo);
+
+        creditCardYes.setBounds(375, 620, 75, 30);
+        creditCardYes.setBackground(Color.WHITE);
+
+        creditCardNo.setBounds(450, 620, 75, 30);
+        creditCardNo.setBackground(Color.WHITE);
+
+        add(creditCardYes);
+        add(creditCardNo);
 
         next = new JButton("Next");
         next.setBackground(Color.BLACK);
@@ -136,7 +200,6 @@ public class SignupTwo extends JFrame implements ActionListener{
         next.addActionListener(this);
         add(next);
 
-
         getContentPane().setBackground(Color.WHITE);
 
         setSize(850, 800);
@@ -145,58 +208,66 @@ public class SignupTwo extends JFrame implements ActionListener{
     }
 
     public void actionPerformed(ActionEvent ae){
-        String formNumber = "" + random;
-        String firstName = firstNameTextField.getText();
-        // String middleName = middleNameTextField.getText();
-        String lastName = lastNameTextField.getText();
-        String dob = ((JTextField) dateChooser.getDateEditor().getUiComponent()).getText();
-        String address = addressTextField.getText();
-        String city = cityTextField.getText();
-        String state = stateTextField.getText();
-        String zipcode = zipcodeTextField.getText();
-        String email = emailTextField.getText();
-        String confirmEmail = confirmEmailTextField.getText();
+        String occupation = occupationTextField.getText();
+        String education = educationTextField.getText();
+        String income = incomeTextField.getText();
+        String phone = phoneNumberTextField.getText();
+        String mobile = mobileNumberTextField.getText();
 
         try {
-            if (firstName.equals("")){
-                JOptionPane.showMessageDialog(null, "First Name is Required");
+            if (occupation.equals("")){
+                JOptionPane.showMessageDialog(null, "Occupation is required");
+            } else if (education.equals("")){
+                JOptionPane.showMessageDialog(null, "Education is required");
+            } else if (income.equals("")){
+                JOptionPane.showMessageDialog(null, "Income is required");
+            } else if (phone.equals("")){
+                JOptionPane.showMessageDialog(null,"Phone number is required");
+            } else if (mobile.equals("")){
+                JOptionPane.showMessageDialog(null, "Mobile number is required");
+            } else {
+
             }
-            else if (lastName.equals("")){
-                JOptionPane.showMessageDialog(null, "Last Name is Required");
-            }
-            else if (dob.equals("")){
-                JOptionPane.showMessageDialog(null, "Date of Birth is Required");
-            }
-            else if (address.equals("")){
-                JOptionPane.showMessageDialog(null, "Address is Required");
-            }
-            else if (city.equals("")){
-                JOptionPane.showMessageDialog(null, "City is Required");
-            }
-            else if (state.equals("")){
-                JOptionPane.showMessageDialog(null, "State is Required");
-            }
-            else if (zipcode.equals("")){
-                JOptionPane.showMessageDialog(null, "Zipcode is Required");
-            }
-            else if (email.equals("")){
-                JOptionPane.showMessageDialog(null, "Email is Required");
-            }
-            else if (!email.contains("@")){
-                JOptionPane.showMessageDialog(null, "Please enter a valid email");
-            }
-            else if (confirmEmail.equals("")){
-                JOptionPane.showMessageDialog(null, "Confirmation Email is Required");
-            }
-            else if (!email.equals(confirmEmail)){
-                JOptionPane.showMessageDialog(null, "Emails are not the same, please check spelling");
-            }
-            else {
-                System.out.println(formNumber);
-                Conn c = new Conn();
-                String query = "insert into signup values('"+formNumber+"','"+firstName+"','"+lastName+"','"+dob+"','"+address+"', '"+city+"','"+state+"','"+zipcode+"','"+email+"')";
-                c.s.executeUpdate(query);
-            }
+
+            // if (firstName.equals("")){
+            //     JOptionPane.showMessageDialog(null, "First Name is Required");
+            // }
+            // else if (lastName.equals("")){
+            //     JOptionPane.showMessageDialog(null, "Last Name is Required");
+            // }
+            // else if (dob.equals("")){
+            //     JOptionPane.showMessageDialog(null, "Date of Birth is Required");
+            // }
+            // else if (address.equals("")){
+            //     JOptionPane.showMessageDialog(null, "Address is Required");
+            // }
+            // else if (city.equals("")){
+            //     JOptionPane.showMessageDialog(null, "City is Required");
+            // }
+            // else if (state.equals("")){
+            //     JOptionPane.showMessageDialog(null, "State is Required");
+            // }
+            // else if (zipcode.equals("")){
+            //     JOptionPane.showMessageDialog(null, "Zipcode is Required");
+            // }
+            // else if (email.equals("")){
+            //     JOptionPane.showMessageDialog(null, "Email is Required");
+            // }
+            // else if (!email.contains("@")){
+            //     JOptionPane.showMessageDialog(null, "Please enter a valid email");
+            // }
+            // else if (confirmEmail.equals("")){
+            //     JOptionPane.showMessageDialog(null, "Confirmation Email is Required");
+            // }
+            // else if (!email.equals(confirmEmail)){
+            //     JOptionPane.showMessageDialog(null, "Emails are not the same, please check spelling");
+            // }
+            // else {
+            //     System.out.println(formNumber);
+            //     Conn c = new Conn();
+            //     String query = "insert into signup values('"+formNumber+"','"+firstName+"','"+lastName+"','"+dob+"','"+address+"', '"+city+"','"+state+"','"+zipcode+"','"+email+"')";
+            //     c.s.executeUpdate(query);
+            // }
         } catch (Exception e){
             System.out.println(e);
         }

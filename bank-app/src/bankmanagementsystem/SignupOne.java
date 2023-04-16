@@ -195,10 +195,10 @@ public class SignupOne extends JFrame implements ActionListener{
                 JOptionPane.showMessageDialog(null, "Emails are not the same, please check spelling");
             }
             else {
-                System.out.println(formNumber);
-                Conn c = new Conn();
-                String query = "insert into signup values('"+formNumber+"','"+firstName+"','"+lastName+"','"+dob+"','"+address+"', '"+city+"','"+state+"','"+zipcode+"','"+email+"')";
-                c.s.executeUpdate(query);
+                // System.out.println(formNumber);
+                // Conn c = new Conn();
+                // String query = "insert into signup values('"+formNumber+"','"+firstName+"','"+lastName+"','"+dob+"','"+address+"', '"+city+"','"+state+"','"+zipcode+"','"+email+"')";
+                // c.s.executeUpdate(query);
                 
                 setVisible(false);
                 new SignupTwo().setVisible(true);
