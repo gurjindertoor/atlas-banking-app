@@ -31,7 +31,7 @@ public class SignupOne extends JFrame implements ActionListener{
         personalDetails.setBounds(290, 80, 400, 30);
         add(personalDetails);
 
-        JLabel firstName = new JLabel("First Name*:");
+        JLabel firstName = new JLabel("First Name:");
         firstName.setFont(new Font("Raleway", Font.BOLD, 18));
         firstName.setBounds(100, 140, 200, 30);
         add(firstName);
@@ -51,7 +51,7 @@ public class SignupOne extends JFrame implements ActionListener{
         // middleNameTextField.setBounds(300, 200, 400, 25);
         // add(middleNameTextField);
 
-        JLabel lastName = new JLabel("Last Name*:");
+        JLabel lastName = new JLabel("Last Name:");
         lastName.setFont(new Font("Raleway", Font.BOLD, 18));
         lastName.setBounds(100, 200, 200, 30);
         add(lastName);
@@ -61,7 +61,7 @@ public class SignupOne extends JFrame implements ActionListener{
         lastNameTextField.setBounds(300, 200, 400, 25);
         add(lastNameTextField);
 
-        JLabel DOB = new JLabel("Date of Birth*:");
+        JLabel DOB = new JLabel("Date of Birth:");
         DOB.setFont(new Font("Raleway", Font.BOLD, 18));
         DOB.setBounds(100, 260, 200, 30);
         add(DOB);
@@ -71,7 +71,7 @@ public class SignupOne extends JFrame implements ActionListener{
         dateChooser.setForeground(Color.BLACK);
         add(dateChooser);
 
-        JLabel address = new JLabel("Address*:");
+        JLabel address = new JLabel("Address:");
         address.setFont(new Font("Raleway", Font.BOLD, 18));
         address.setBounds(100, 320, 200, 30);
         add(address);
@@ -81,7 +81,7 @@ public class SignupOne extends JFrame implements ActionListener{
         addressTextField.setBounds(300, 320, 400, 25);
         add(addressTextField);
 
-        JLabel city = new JLabel("City*:");
+        JLabel city = new JLabel("City:");
         city.setFont(new Font("Raleway", Font.BOLD, 18));
         city.setBounds(100, 380, 200, 30);
         add(city);
@@ -91,7 +91,7 @@ public class SignupOne extends JFrame implements ActionListener{
         cityTextField.setBounds(300, 380, 400, 25);
         add(cityTextField);
 
-        JLabel state = new JLabel("State*:");
+        JLabel state = new JLabel("State:");
         state.setFont(new Font("Raleway", Font.BOLD, 18));
         state.setBounds(100, 440, 200, 30);
         add(state);
@@ -101,7 +101,7 @@ public class SignupOne extends JFrame implements ActionListener{
         stateTextField.setBounds(300, 440, 400, 25);
         add(stateTextField);
 
-        JLabel zipcode = new JLabel("Zipcode*:");
+        JLabel zipcode = new JLabel("Zipcode:");
         zipcode.setFont(new Font("Raleway", Font.BOLD, 18));
         zipcode.setBounds(100, 500, 200, 30);
         add(zipcode);
@@ -111,7 +111,7 @@ public class SignupOne extends JFrame implements ActionListener{
         zipcodeTextField.setBounds(300, 500, 400, 25);
         add(zipcodeTextField);
 
-        JLabel email = new JLabel("Email*:");
+        JLabel email = new JLabel("Email:");
         email.setFont(new Font("Raleway", Font.BOLD, 18));
         email.setBounds(100, 560, 200, 30);
         add(email);
@@ -121,7 +121,7 @@ public class SignupOne extends JFrame implements ActionListener{
         emailTextField.setBounds(300, 560, 400, 25);
         add(emailTextField);
 
-        JLabel confirmEmail = new JLabel("Confirm Email*:");
+        JLabel confirmEmail = new JLabel("Confirm Email:");
         confirmEmail.setFont(new Font("Raleway", Font.BOLD, 18));
         confirmEmail.setBounds(100, 620, 200, 30);
         add(confirmEmail);
@@ -150,7 +150,6 @@ public class SignupOne extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent ae){
         String formNumber = "" + random;
         String firstName = firstNameTextField.getText();
-        // String middleName = middleNameTextField.getText();
         String lastName = lastNameTextField.getText();
         String dob = ((JTextField) dateChooser.getDateEditor().getUiComponent()).getText();
         String address = addressTextField.getText();
@@ -194,14 +193,9 @@ public class SignupOne extends JFrame implements ActionListener{
             else if (!email.equals(confirmEmail)){
                 JOptionPane.showMessageDialog(null, "Emails are not the same, please check spelling");
             }
-            else {
-                // System.out.println(formNumber);
-                // Conn c = new Conn();
-                // String query = "insert into signup values('"+formNumber+"','"+firstName+"','"+lastName+"','"+dob+"','"+address+"', '"+city+"','"+state+"','"+zipcode+"','"+email+"')";
-                // c.s.executeUpdate(query);
-                
+            else {                
                 setVisible(false);
-                new SignupTwo().setVisible(true);
+                new SignupTwo(formNumber, firstName, lastName, dob, address, city, state, zipcode, email, confirmEmail).setVisible(true);
             }
         } catch (Exception e){
             System.out.println(e);
@@ -211,3 +205,8 @@ public class SignupOne extends JFrame implements ActionListener{
         new SignupOne();
     }
 }
+
+                // System.out.println(formNumber);
+                // Conn c = new Conn();
+                // String query = "insert into signup values('"+formNumber+"','"+firstName+"','"+lastName+"','"+dob+"','"+address+"', '"+city+"','"+state+"','"+zipcode+"','"+email+"')";
+                // c.s.executeUpdate(query);
