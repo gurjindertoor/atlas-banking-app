@@ -9,29 +9,33 @@ import java.awt.event.*;
 public class SignupOne extends JFrame implements ActionListener{
 
     long random;
+    JLabel formNumber, personalDetails, firstName, lastName, DOB, address, city, state, zipcode, email, confirmEmail;
     JTextField firstNameTextField, middleNameTextField, lastNameTextField, addressTextField, cityTextField, stateTextField, zipcodeTextField, emailTextField, confirmEmailTextField;
-    JButton next;
+    JButton cancel, next;
     JDateChooser dateChooser;
 
     SignupOne(){
 
         setLayout(null);
-        setTitle("New Account Application - Page 1");
+        setTitle("New Account Application - Page 1: New Application");
 
         Random ran = new Random();
         random = Math.abs((ran.nextLong() % 9000L) + 1000L);
 
-        JLabel formNumber = new JLabel("Application Form Number " + random);
+        // Form Number
+        formNumber = new JLabel("Application Form Number " + random);
         formNumber.setFont(new Font("Raleway", Font.BOLD, 38));
         formNumber.setBounds(140, 20, 600, 40);
         add(formNumber);
 
-        JLabel personalDetails = new JLabel("Page 1: Personal Details");
+        personalDetails = new JLabel("Page 1: Personal Details");
         personalDetails.setFont(new Font("Raleway", Font.BOLD, 22));
         personalDetails.setBounds(290, 80, 400, 30);
         add(personalDetails);
 
-        JLabel firstName = new JLabel("First Name:");
+
+        // First Name
+        firstName = new JLabel("First Name:");
         firstName.setFont(new Font("Raleway", Font.BOLD, 18));
         firstName.setBounds(100, 140, 200, 30);
         add(firstName);
@@ -41,17 +45,9 @@ public class SignupOne extends JFrame implements ActionListener{
         firstNameTextField.setBounds(300, 140, 400, 25);
         add(firstNameTextField);
 
-        // JLabel middleName = new JLabel("Middle Name:");
-        // middleName.setFont(new Font("Raleway", Font.BOLD, 18));
-        // middleName.setBounds(100, 200, 200, 30);
-        // add(middleName);
 
-        // middleNameTextField = new JTextField();
-        // middleNameTextField.setFont(new Font("Raleway", Font.BOLD, 12));
-        // middleNameTextField.setBounds(300, 200, 400, 25);
-        // add(middleNameTextField);
-
-        JLabel lastName = new JLabel("Last Name:");
+        // Last Name
+        lastName = new JLabel("Last Name:");
         lastName.setFont(new Font("Raleway", Font.BOLD, 18));
         lastName.setBounds(100, 200, 200, 30);
         add(lastName);
@@ -61,7 +57,9 @@ public class SignupOne extends JFrame implements ActionListener{
         lastNameTextField.setBounds(300, 200, 400, 25);
         add(lastNameTextField);
 
-        JLabel DOB = new JLabel("Date of Birth:");
+
+        // Date of Birth/DOB
+        DOB = new JLabel("Date of Birth:");
         DOB.setFont(new Font("Raleway", Font.BOLD, 18));
         DOB.setBounds(100, 260, 200, 30);
         add(DOB);
@@ -71,7 +69,9 @@ public class SignupOne extends JFrame implements ActionListener{
         dateChooser.setForeground(Color.BLACK);
         add(dateChooser);
 
-        JLabel address = new JLabel("Address:");
+
+        // Address
+        address = new JLabel("Address:");
         address.setFont(new Font("Raleway", Font.BOLD, 18));
         address.setBounds(100, 320, 200, 30);
         add(address);
@@ -81,7 +81,9 @@ public class SignupOne extends JFrame implements ActionListener{
         addressTextField.setBounds(300, 320, 400, 25);
         add(addressTextField);
 
-        JLabel city = new JLabel("City:");
+
+        // City
+        city = new JLabel("City:");
         city.setFont(new Font("Raleway", Font.BOLD, 18));
         city.setBounds(100, 380, 200, 30);
         add(city);
@@ -91,7 +93,9 @@ public class SignupOne extends JFrame implements ActionListener{
         cityTextField.setBounds(300, 380, 400, 25);
         add(cityTextField);
 
-        JLabel state = new JLabel("State:");
+
+        // State
+        state = new JLabel("State:");
         state.setFont(new Font("Raleway", Font.BOLD, 18));
         state.setBounds(100, 440, 200, 30);
         add(state);
@@ -101,7 +105,9 @@ public class SignupOne extends JFrame implements ActionListener{
         stateTextField.setBounds(300, 440, 400, 25);
         add(stateTextField);
 
-        JLabel zipcode = new JLabel("Zipcode:");
+
+        // Zipcode
+        zipcode = new JLabel("Zipcode:");
         zipcode.setFont(new Font("Raleway", Font.BOLD, 18));
         zipcode.setBounds(100, 500, 200, 30);
         add(zipcode);
@@ -111,7 +117,9 @@ public class SignupOne extends JFrame implements ActionListener{
         zipcodeTextField.setBounds(300, 500, 400, 25);
         add(zipcodeTextField);
 
-        JLabel email = new JLabel("Email:");
+
+        // Email
+        email = new JLabel("Email:");
         email.setFont(new Font("Raleway", Font.BOLD, 18));
         email.setBounds(100, 560, 200, 30);
         add(email);
@@ -121,7 +129,9 @@ public class SignupOne extends JFrame implements ActionListener{
         emailTextField.setBounds(300, 560, 400, 25);
         add(emailTextField);
 
-        JLabel confirmEmail = new JLabel("Confirm Email:");
+
+        // Confirm Email
+        confirmEmail = new JLabel("Confirm Email:");
         confirmEmail.setFont(new Font("Raleway", Font.BOLD, 18));
         confirmEmail.setBounds(100, 620, 200, 30);
         add(confirmEmail);
@@ -131,6 +141,16 @@ public class SignupOne extends JFrame implements ActionListener{
         confirmEmailTextField.setBounds(300, 620, 400, 25);
         add(confirmEmailTextField);
 
+        // Cancel Button
+        cancel = new JButton("Cancel");
+        cancel.setBackground(Color.BLACK);
+        cancel.setForeground(Color.WHITE);
+        cancel.setFont(new Font("Raleway", Font.BOLD, 14));
+        cancel.setBounds(100, 680, 100, 30);
+        cancel.addActionListener(this);
+        add(cancel);
+
+        // Next Button
         next = new JButton("Next");
         next.setBackground(Color.BLACK);
         next.setForeground(Color.WHITE);
@@ -138,7 +158,6 @@ public class SignupOne extends JFrame implements ActionListener{
         next.setBounds(620, 680, 80, 30);
         next.addActionListener(this);
         add(next);
-
 
         getContentPane().setBackground(Color.WHITE);
 
@@ -160,41 +179,46 @@ public class SignupOne extends JFrame implements ActionListener{
         String confirmEmail = confirmEmailTextField.getText();
 
         try {
-            if (firstName.equals("")){
-                JOptionPane.showMessageDialog(null, "First Name is Required");
+            if (ae.getSource() == cancel){
+                setVisible(false);
+                new Login();
+            } else if (firstName.equals("")){
+                JOptionPane.showMessageDialog(null, "First Name Required");
             }
             else if (lastName.equals("")){
-                JOptionPane.showMessageDialog(null, "Last Name is Required");
+                JOptionPane.showMessageDialog(null, "Last Name Required");
             }
             else if (dob.equals("")){
-                JOptionPane.showMessageDialog(null, "Date of Birth is Required");
+                JOptionPane.showMessageDialog(null, "Date of Birth Required");
             }
             else if (address.equals("")){
-                JOptionPane.showMessageDialog(null, "Address is Required");
+                JOptionPane.showMessageDialog(null, "Address Required");
             }
             else if (city.equals("")){
-                JOptionPane.showMessageDialog(null, "City is Required");
+                JOptionPane.showMessageDialog(null, "City Required");
             }
             else if (state.equals("")){
-                JOptionPane.showMessageDialog(null, "State is Required");
+                JOptionPane.showMessageDialog(null, "State Required");
             }
             else if (zipcode.equals("")){
-                JOptionPane.showMessageDialog(null, "Zipcode is Required");
+                JOptionPane.showMessageDialog(null, "Zipcode Required");
             }
             else if (email.equals("")){
-                JOptionPane.showMessageDialog(null, "Email is Required");
+                JOptionPane.showMessageDialog(null, "Email Required");
             }
             else if (!email.contains("@")){
-                JOptionPane.showMessageDialog(null, "Please enter a valid email");
+                JOptionPane.showMessageDialog(null, "Please enter valid email");
             }
             else if (confirmEmail.equals("")){
-                JOptionPane.showMessageDialog(null, "Confirmation Email is Required");
+                JOptionPane.showMessageDialog(null, "Confirmation Email Required");
             }
             else if (!email.equals(confirmEmail)){
                 JOptionPane.showMessageDialog(null, "Emails are not the same, please check spelling");
-            }
-            else {                
+            } else {                
                 setVisible(false);
+                // Conn c = new Conn();
+                // String query = "insert into signup values('"+formNumber+"','"+firstName+"','"+lastName+"','"+dob+"','"+address+"', '"+city+"','"+state+"','"+zipcode+"','"+email+"')";
+                // c.s.executeUpdate(query);
                 new SignupTwo(formNumber, firstName, lastName, dob, address, city, state, zipcode, email, confirmEmail).setVisible(true);
             }
         } catch (Exception e){

@@ -2,16 +2,16 @@ package bankmanagementsystem;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.*;
 import java.awt.event.*;
 
 public class SignupTwo extends JFrame implements ActionListener{
 
     long random;
+    JLabel additionalDetails, gender, maritalStatus, ownOrRent, occupation, education, income, phoneNumber, mobileNumber, accountType;
     JTextField phoneNumberTextField, mobileNumberTextField;
     JButton next, previous;
     JComboBox occupations, educations, incomes;
-    JRadioButton male, female, other, preferNotDisclose, single, married, divorced, widowed, checking, saving, creditCardYes, creditCardNo;
+    JRadioButton male, female, other, preferNotDisclose, single, married, divorced, widowed, ownProperty, rentProperty, otherProperty, checking, saving, creditCardYes, creditCardNo;
     String formNumber, firstName, lastName, dob, address, city, state, zipcode, email, confirmEmail;
 
     SignupTwo(String formNumber, String firstName, String lastName, String dob, String address, String city, String state, String zipcode, String email, String confirmEmail){
@@ -27,19 +27,16 @@ public class SignupTwo extends JFrame implements ActionListener{
         this.confirmEmail = confirmEmail;
 
         setLayout(null);
-        setTitle("New Account Application - Page 2");
+        setTitle("New Account Application - Page 2: Additional Details");
+        
 
-        // JLabel application = new JLabel("New Account Application");
-        // application.setFont(new Font("Raleway", Font.BOLD, 38));
-        // application.setBounds(140, 20, 600, 40);
-        // add(application);
-
-        JLabel additionalDetails = new JLabel("Page 2: Additional Details");
+        additionalDetails = new JLabel("Page 2: Additional Details");
         additionalDetails.setFont(new Font("Raleway", Font.BOLD, 22));
         additionalDetails.setBounds(290, 80, 400, 30);
         add(additionalDetails);
 
-        JLabel gender = new JLabel("Gender:");
+        // Gender
+        gender = new JLabel("Gender:");
         gender.setFont(new Font("Raleway", Font.BOLD, 18));
         gender.setBounds(100, 140, 200, 30);
         add(gender);
@@ -70,7 +67,9 @@ public class SignupTwo extends JFrame implements ActionListener{
         add(other);
         add(preferNotDisclose);
 
-        JLabel maritalStatus = new JLabel("Marital Status:");
+
+        // Marital Status
+        maritalStatus = new JLabel("Marital Status:");
         maritalStatus.setFont(new Font("Raleway", Font.BOLD, 18));
         maritalStatus.setBounds(100, 200, 200, 30);
         add(maritalStatus);
@@ -101,65 +100,104 @@ public class SignupTwo extends JFrame implements ActionListener{
         add(divorced);
         add(widowed);
 
-        JLabel occupation = new JLabel("Occupation:");
+
+        // Own or Rent
+        ownOrRent = new JLabel("Own/Rent Property:");
+        ownOrRent.setFont(new Font("Raleway", Font.BOLD, 18));
+        ownOrRent.setBounds(100, 260, 200, 30);
+        add(ownOrRent);
+
+        ownProperty = new JRadioButton("Own");
+        rentProperty = new JRadioButton("Rent");
+        otherProperty = new JRadioButton("Other");
+
+        ButtonGroup ownOrRentGroup = new ButtonGroup();
+        ownOrRentGroup.add(ownProperty);
+        ownOrRentGroup.add(rentProperty);
+        ownOrRentGroup.add(otherProperty);
+
+        ownProperty.setBounds(300, 260, 75, 30);
+        rentProperty.setBounds(375, 260, 75, 30);
+        otherProperty.setBounds(450, 260, 75, 30);
+        ownProperty.setBackground(Color.WHITE);
+        rentProperty.setBackground(Color.WHITE);
+        otherProperty.setBackground((Color.WHITE));
+
+        add(ownProperty);
+        add(rentProperty);
+        add(otherProperty);
+
+
+        // Occupation
+        occupation = new JLabel("Occupation:");
         occupation.setFont(new Font("Raleway", Font.BOLD, 18));
-        occupation.setBounds(100, 260, 200, 30);
+        occupation.setBounds(100, 320, 200, 30);
         add(occupation);
 
         String occupationList[] = {"Unemployed", "Accounting/Finance", "Administrative/Clerical", "Advertising/Public Relations", "Aerospace/Aviation/Defense", "Arts/Entertainment/Publishing", "Banking/Mortgage", "Business Development", "Construction/Facilities", "Consulting", "Customer Service/Call Center", "Education/Training", "Engineering", "Government/Military", "Healthcare", "Hospitality/Travel", "Human Resources", "Information Technology", "Insurance", "Internet/New Media", "Law Enforcement/Security", "Legal", "Manufacturing/Operations", "Marketing", "Non-Profit/Volunteer", "Other", "Pharmaceutical/Biotech", "Project/Program Management", "Real Estate", "Restaurant/Food Service", "Retail", "Sales", "Science/Research", "Telecommunications", "Transportation/Logistics", "Upper Management/Consulting", "Warehouse/Inventory Management"};
         occupations = new JComboBox(occupationList);
         occupations.setFont(new Font("Raleway", Font.BOLD, 12));
         occupations.setBackground(Color.WHITE);
-        occupations.setBounds(300, 260, 400, 30);
+        occupations.setBounds(300, 320, 400, 30);
         add(occupations);
 
-        JLabel education = new JLabel("Education:");
+
+        // Education
+        education = new JLabel("Education:");
         education.setFont(new Font("Raleway", Font.BOLD, 18));
-        education.setBounds(100, 320, 200, 30);
+        education.setBounds(100, 380, 200, 30);
         add(education);
 
         String educationList[] = {"High School Diploama/Equivalent", "Some College", "Associates Degree", "Undergraduate Degree", "Master's Degree", "Doctorate", "Other"};
         educations = new JComboBox(educationList);
         educations.setFont(new Font("Raleway", Font.BOLD, 12));
         educations.setBackground(Color.WHITE);
-        educations.setBounds(300, 320, 400, 30);
+        educations.setBounds(300, 380, 400, 25);
         add(educations);
 
-        JLabel income = new JLabel("Annual Income:");
+
+        // Income
+        income = new JLabel("Annual Income:");
         income.setFont(new Font("Raleway", Font.BOLD, 18));
-        income.setBounds(100, 380, 200, 30);
+        income.setBounds(100, 440, 200, 30);
         add(income);
 
         String incomeList[] = {"Less than $25,000", "$25,000 - $50,000", "$50,000 - $75,000", "$75,000 - $100,000", "$100,000 - $150,000", "$150,000 or more"};
         incomes = new JComboBox(incomeList);
         incomes.setFont(new Font("Raleway", Font.BOLD, 12));
         incomes.setBackground(Color.WHITE);
-        incomes.setBounds(300, 380, 400, 25);
+        incomes.setBounds(300, 440, 400, 25);
         add(incomes);
 
-        JLabel phoneNumber = new JLabel("Phone Number:");
+
+        // Phone Number
+        phoneNumber = new JLabel("Phone Number:");
         phoneNumber.setFont(new Font("Raleway", Font.BOLD, 18));
-        phoneNumber.setBounds(100, 440, 200, 30);
+        phoneNumber.setBounds(100, 500, 200, 30);
         add(phoneNumber);
 
         phoneNumberTextField = new JTextField();
         phoneNumberTextField.setFont(new Font("Raleway", Font.BOLD, 12));
-        phoneNumberTextField.setBounds(300, 440, 400, 25);
+        phoneNumberTextField.setBounds(300, 500, 400, 30);
         add(phoneNumberTextField);
 
-        JLabel mobileNumber = new JLabel("Mobile Number:");
+
+        // Mobile Number
+        mobileNumber = new JLabel("Mobile Number:");
         mobileNumber.setFont(new Font("Raleway", Font.BOLD, 18));
-        mobileNumber.setBounds(100, 500, 200, 30);
+        mobileNumber.setBounds(100, 560, 400, 30);
         add(mobileNumber);
 
         mobileNumberTextField = new JTextField();
         mobileNumberTextField.setFont(new Font("Raleway", Font.BOLD, 12));
-        mobileNumberTextField.setBounds(300, 500, 400, 25);
+        mobileNumberTextField.setBounds(300, 560, 400, 30);
         add(mobileNumberTextField);
 
-        JLabel accountType = new JLabel("Account Type:");
+
+        // Account Type
+        accountType = new JLabel("Account Type:");
         accountType.setFont(new Font("Raleway", Font.BOLD, 18));
-        accountType.setBounds(100, 560, 200, 30);
+        accountType.setBounds(100, 620, 400, 30);
         add(accountType);
 
         checking = new JRadioButton("Checking Account");
@@ -169,35 +207,16 @@ public class SignupTwo extends JFrame implements ActionListener{
         accountTypeGroup.add(checking);
         accountTypeGroup.add(saving);
 
-        checking.setBounds(300, 560, 150, 30);
+        checking.setBounds(300, 620, 150, 30);
         checking.setBackground(Color.WHITE);
-        saving.setBounds(450, 560, 200, 30);
+        saving.setBounds(450, 620, 150, 30);
         saving.setBackground(Color.WHITE);
 
         add(checking);
         add(saving);
 
-        JLabel creditCard = new JLabel("Applying for Credit Card?:");
-        creditCard.setFont(new Font("Raleway", Font.BOLD, 18));
-        creditCard.setBounds(100, 620, 400, 30);
-        add(creditCard);
 
-        creditCardYes = new JRadioButton("Yes");
-        creditCardNo = new JRadioButton("No");
-
-        ButtonGroup creditCardGroup = new ButtonGroup();
-        creditCardGroup.add(creditCardYes);
-        creditCardGroup.add(creditCardNo);
-
-        creditCardYes.setBounds(375, 620, 75, 30);
-        creditCardYes.setBackground(Color.WHITE);
-
-        creditCardNo.setBounds(450, 620, 75, 30);
-        creditCardNo.setBackground(Color.WHITE);
-
-        add(creditCardYes);
-        add(creditCardNo);
-
+        // Previous Button
         previous = new JButton("Previous");
         previous.setBackground(Color.BLACK);
         previous.setForeground(Color.WHITE);
@@ -206,6 +225,8 @@ public class SignupTwo extends JFrame implements ActionListener{
         previous.addActionListener(this);
         add(previous);
 
+
+        // Next Button
         next = new JButton("Next");
         next.setBackground(Color.BLACK);
         next.setForeground(Color.WHITE);
@@ -223,10 +244,6 @@ public class SignupTwo extends JFrame implements ActionListener{
 
 
     public void actionPerformed(ActionEvent ae){
-
-
-
-
         String gender = null;
         if (male.isSelected()){
             gender = "Male";
@@ -249,6 +266,15 @@ public class SignupTwo extends JFrame implements ActionListener{
             maritalStatus = "Widowed";
         }
 
+        String ownOrRent = null;
+        if (ownProperty.isSelected()){
+            ownOrRent = "Own Property";
+        } else if (rentProperty.isSelected()){
+            ownOrRent = "Rent Property";
+        } else if (otherProperty.isSelected()){
+            ownOrRent = "Other Property";
+        }
+
         String occupation = (String) occupations.getSelectedItem();
         String education = (String) educations.getSelectedItem();
         String income = (String) incomes.getSelectedItem();
@@ -262,29 +288,26 @@ public class SignupTwo extends JFrame implements ActionListener{
             accountType = "Saving";
         }
 
-        String applyingCreditCard = null;
-        if (creditCardYes.isSelected()){
-            applyingCreditCard = "Yes";
-        } else if (creditCardNo.isSelected()){
-            applyingCreditCard = "No"; 
-        }
-
         try {
             if (gender == null){
-                JOptionPane.showMessageDialog(null, "Gender is required");
+                JOptionPane.showMessageDialog(null, "Gender Required");
             } else if (maritalStatus == null){
-                JOptionPane.showMessageDialog(null, "Marital Status is required");
+                JOptionPane.showMessageDialog(null, "Marital Status Required");
+            } else if (ownOrRent == null){
+                JOptionPane.showMessageDialog(null, "Own/Rent Property Required");
             } else if (phoneNumber.equals("")){
-                JOptionPane.showMessageDialog(null, "Phone Number is required");
+                JOptionPane.showMessageDialog(null, "Phone Number Required");
             } else if (mobileNumber.equals("")){
-                JOptionPane.showMessageDialog(null, "Mobile Number is required");
+                JOptionPane.showMessageDialog(null, "Mobile Number Required");
             } else if (accountType == null){
-                JOptionPane.showMessageDialog(null, "Account Type is required");
-            } else if (applyingCreditCard == null){
-                JOptionPane.showMessageDialog(null, "Credit Card question is required");
+                JOptionPane.showMessageDialog(null, "Account Type Required");
             } else {
                 System.out.println(firstName);
                 setVisible(false);
+                new SignupThree().setVisible(true);
+
+
+
                 // new SignupOne(formNumber, firstName, lastName, dob, address, city, state, zipcode, email, confirmEmail).setVisible(true);
             }
         } catch (Exception e) {
