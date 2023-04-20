@@ -5,8 +5,8 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class SignupTwo extends JFrame implements ActionListener{
+    User user;
 
-    long random;
     JLabel additionalDetails, gender, maritalStatus, ownOrRent, occupation, education, income, phoneNumber, mobileNumber, accountType;
     JTextField phoneNumberTextField, mobileNumberTextField;
     JButton next, previous;
@@ -14,17 +14,8 @@ public class SignupTwo extends JFrame implements ActionListener{
     JRadioButton male, female, other, preferNotDisclose, single, married, divorced, widowed, ownProperty, rentProperty, otherProperty, checking, saving, creditCardYes, creditCardNo;
     String formNumber, firstName, lastName, dob, address, city, state, zipcode, email, confirmEmail;
 
-    SignupTwo(String formNumber, String firstName, String lastName, String dob, String address, String city, String state, String zipcode, String email, String confirmEmail){
-        this.formNumber = formNumber;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.dob = dob;
-        this.address = address;
-        this.city = city;
-        this.state = state;
-        this.zipcode = zipcode;
-        this.email = email;
-        this.confirmEmail = confirmEmail;
+    SignupTwo(User user){
+        this.user = user;
 
         setLayout(null);
         setTitle("New Account Application - Page 2: Additional Details");
@@ -242,7 +233,6 @@ public class SignupTwo extends JFrame implements ActionListener{
         setVisible(true);
     }
 
-
     public void actionPerformed(ActionEvent ae){
         String gender = null;
         if (male.isSelected()){
@@ -289,7 +279,19 @@ public class SignupTwo extends JFrame implements ActionListener{
         }
 
         try {
-            if (gender == null){
+            if (ae.getSource() == previous){
+                dispose();
+                SignupOne signupOne = new SignupOne(user);
+                signupOne.firstNameTextField.setText(user.firstName);
+                signupOne.lastNameTextField.setText(user.lastName);
+                // signupOne.dateChooser.setDate(java.sql.Date.valueOf(user.dob));
+                signupOne.addressTextField.setText(user.address);
+                signupOne.cityTextField.setText(user.city);
+                signupOne.stateTextField.setText(user.state);
+                signupOne.zipcodeTextField.setText(user.zipcode);
+                signupOne.emailTextField.setText(user.email);
+                signupOne.confirmEmailTextField.setText(user.confirmEmail);
+            } else if (gender == null){
                 JOptionPane.showMessageDialog(null, "Gender Required");
             } else if (maritalStatus == null){
                 JOptionPane.showMessageDialog(null, "Marital Status Required");
@@ -302,38 +304,20 @@ public class SignupTwo extends JFrame implements ActionListener{
             } else if (accountType == null){
                 JOptionPane.showMessageDialog(null, "Account Type Required");
             } else {
-                System.out.println(firstName);
-                setVisible(false);
-                new SignupThree().setVisible(true);
-
-
-
-                // new SignupOne(formNumber, firstName, lastName, dob, address, city, state, zipcode, email, confirmEmail).setVisible(true);
+                user.gender = gender;
+                user.maritalStatus = maritalStatus;
+                user.ownOrRent = ownOrRent;
+                user.occupation = occupation;
+                user.education = education;
+                user.income = income;
+                user.phoneNumber = phoneNumberTextField.getText();
+                user.mobileNumber = mobileNumberTextField.getText();
+                user.accountType = accountType;
+                SignupThree signupThree = new SignupThree(user);
+                dispose();
             }
         } catch (Exception e) {
             System.out.println(e);
         }
-    
-    }
-    public static void main(String args[]){
-        new SignupTwo("", "", "", "", "", "", "", "", "","");
     }
 }
-
-
-//     else if (ae.getSource() == previous){
-//         setVisible(false);
-//         SignupOne().setVisible(true);
-//     }
-
-// public void actionPerformed(ActionEvent ae){
-//     if (ae.getSource() == clear){
-//         usernameTextField.setText("");
-//         passwordTextField.setText("");
-//     } else if (ae.getSource() == login) {
-
-//     } else if (ae.getSource() == signup){
-//         setVisible(false);
-//         new SignupOne().setVisible(true);
-//     }
-// }

@@ -5,13 +5,16 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class SignupThree extends JFrame implements ActionListener{
+    User user;
 
     JLabel loginCreation, username, password, confirmPassword;
     JTextField usernameTextField;
     JPasswordField passwordField, confirmPasswordField;
     JButton previous, submit;
+    String formNumber, firstName, lastName, dob, address, city, state, zipcode, email, confirmEmail, gender, maritalStatus, ownOrRent, occupation, education, income, phoneNumber, mobileNumber, accountType;
 
-    SignupThree(){
+    SignupThree(User user){
+        this.user = user;
         setLayout(null);
         setTitle("New Account Application - Page 3: Login Creation");
 
@@ -55,7 +58,7 @@ public class SignupThree extends JFrame implements ActionListener{
         confirmPasswordField.setBounds(300, 260, 400, 30);
         add(confirmPasswordField);
 
-        
+
         // Previous Button
         previous = new JButton("Previous");
         previous.setBackground(Color.BLACK);
@@ -65,6 +68,7 @@ public class SignupThree extends JFrame implements ActionListener{
         previous.addActionListener(this);
         add(previous);
 
+        
         // Submit Button
         submit = new JButton("Submit");
         submit.setBackground(Color.BLACK);
@@ -86,19 +90,61 @@ public class SignupThree extends JFrame implements ActionListener{
         char[] password = passwordField.getPassword();
         char[] confirmedPassword = confirmPasswordField.getPassword();
 
-        if (username.equals("")){
+        if (ae.getSource() == previous){
+            dispose();
+            SignupTwo signupTwo = new SignupTwo(user);
+
+            if (user.gender.equals("Male")){
+                signupTwo.male.setSelected(true);
+            } else if (user.gender.equals("Female")){
+                signupTwo.female.setSelected(true);
+            } else if (user.gender.equals("Other")){
+                signupTwo.other.setSelected(true);
+            } else {
+                signupTwo.preferNotDisclose.setSelected(true);
+            }
+
+            if (user.maritalStatus.equals("Single")){
+                signupTwo.single.setSelected(true);
+            } else if (user.maritalStatus.equals("Married")){
+                signupTwo.married.setSelected(true);
+            } else if (user.maritalStatus.equals("Divorced")){
+                signupTwo.divorced.setSelected(true);
+            } else {
+                signupTwo.widowed.setSelected(true);
+            }
+
+            if (user.ownOrRent.equals("Own")){
+                signupTwo.ownProperty.setSelected(true);
+            } else if (user.ownOrRent.equals("Rent")){
+                signupTwo.rentProperty.setSelected(true);
+            } else {
+                signupTwo.otherProperty.setSelected(true);
+            }
+
+            signupTwo.occupations.setSelectedItem(user.occupation);
+            signupTwo.educations.setSelectedItem(user.education);
+            signupTwo.incomes.setSelectedItem(user.income);
+            signupTwo.phoneNumberTextField.setText(user.phoneNumber);
+            signupTwo.mobileNumberTextField.setText(user.mobileNumber);
+            
+            if (user.accountType.equals("Checking Account")){
+                signupTwo.checking.setSelected(true);
+            } else {
+                signupTwo.saving.setSelected(true);
+            }
+
+        } else if (username.equals("")){
             JOptionPane.showMessageDialog(null, "Username Required");
         } else if (password.length <= 7){
             JOptionPane.showMessageDialog(null, "Password must be at least 8 characters");
         } else if (!new String(password).equals(new String(confirmedPassword))){
             JOptionPane.showMessageDialog(null, "Passwords are not the same");
+        } else {;
+            // Conn c = new Conn();
+            // String query = "insert into signup values('"+user.random+"','"+user.firstName+"','"+user.lastName+"','"+user.dob+"','"+user.address+"', '"+user.city+"','"+user.state+"','"+user.zipcode+"','"+user.email+"','"+user.gender+"','"+user.maritalStatus+"','"+user.ownOrRent+"','"+user.occupation+"','"+user.education+"','"+user.income+"','"+user.phoneNumber+"','"+user.mobileNumber+"','"+user.accountType+"')";
+            // c.s.executeUpdate(query);
         }
-
-        if (ae.getSource() == submit){
-
-        }
-    }
-    public static void main(String args[]){
-        new SignupThree();
     }
 }
+// make object keep track of information, set fields of object / pass on object

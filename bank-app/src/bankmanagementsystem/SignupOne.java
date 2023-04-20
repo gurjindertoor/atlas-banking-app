@@ -7,23 +7,20 @@ import com.toedter.calendar.JDateChooser;
 import java.awt.event.*;
 
 public class SignupOne extends JFrame implements ActionListener{
+    User user;
 
-    long random;
     JLabel formNumber, personalDetails, firstName, lastName, DOB, address, city, state, zipcode, email, confirmEmail;
     JTextField firstNameTextField, middleNameTextField, lastNameTextField, addressTextField, cityTextField, stateTextField, zipcodeTextField, emailTextField, confirmEmailTextField;
     JButton cancel, next;
     JDateChooser dateChooser;
 
-    SignupOne(){
-
+    SignupOne(User user){
+        this.user = user;
         setLayout(null);
         setTitle("New Account Application - Page 1: New Application");
 
-        Random ran = new Random();
-        random = Math.abs((ran.nextLong() % 9000L) + 1000L);
-
         // Form Number
-        formNumber = new JLabel("Application Form Number " + random);
+        formNumber = new JLabel("Application Form Number " + user.random);
         formNumber.setFont(new Font("Raleway", Font.BOLD, 38));
         formNumber.setBounds(140, 20, 600, 40);
         add(formNumber);
@@ -167,7 +164,6 @@ public class SignupOne extends JFrame implements ActionListener{
     }
 
     public void actionPerformed(ActionEvent ae){
-        String formNumber = "" + random;
         String firstName = firstNameTextField.getText();
         String lastName = lastNameTextField.getText();
         String dob = ((JTextField) dateChooser.getDateEditor().getUiComponent()).getText();
@@ -214,23 +210,29 @@ public class SignupOne extends JFrame implements ActionListener{
             }
             else if (!email.equals(confirmEmail)){
                 JOptionPane.showMessageDialog(null, "Emails are not the same, please check spelling");
-            } else {                
-                setVisible(false);
-                // Conn c = new Conn();
-                // String query = "insert into signup values('"+formNumber+"','"+firstName+"','"+lastName+"','"+dob+"','"+address+"', '"+city+"','"+state+"','"+zipcode+"','"+email+"')";
-                // c.s.executeUpdate(query);
-                new SignupTwo(formNumber, firstName, lastName, dob, address, city, state, zipcode, email, confirmEmail).setVisible(true);
+            } else {     
+                user.firstName = firstName;
+                user.lastName = lastName;
+                user.dob = dob;
+                user.address = address;
+                user.city = city;
+                user.state = state;
+                user.zipcode = zipcode;
+                user.email = email;
+                user.confirmEmail = confirmEmail;
+                
+                SignupTwo signupTwo = new SignupTwo(user);
+
+                dispose();
             }
         } catch (Exception e){
             System.out.println(e);
         }
     }
     public static void main(String args[]){
-        new SignupOne();
+        Random ran = new Random();
+        long random = Math.abs((ran.nextLong() % 9000L) + 1000L);
+        User user = new User(String.valueOf(random), "", "", "", "", "", "", "", "", "");
+        new SignupOne(user);
     }
 }
-
-                // System.out.println(formNumber);
-                // Conn c = new Conn();
-                // String query = "insert into signup values('"+formNumber+"','"+firstName+"','"+lastName+"','"+dob+"','"+address+"', '"+city+"','"+state+"','"+zipcode+"','"+email+"')";
-                // c.s.executeUpdate(query);
