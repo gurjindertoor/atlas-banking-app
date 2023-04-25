@@ -6,9 +6,14 @@ import java.awt.event.*;
 
 public class Transactions extends JFrame implements ActionListener{
 
-    JButton deposit, fastCash, changePin, withdraw, statement, balance, exit;
- 
-    Transactions(){
+    JButton deposit, quickCash, changePassword, applyCreditCard, withdraw, statement, balance, exit;
+    
+    String username, passwordString;
+
+    Transactions(String username, String passwordString){
+        this.username = username;
+        this.passwordString = passwordString;
+
         setLayout(null);
         
         ImageIcon il = new ImageIcon(ClassLoader.getSystemResource("bankmanagementsystem/icons/atm.jpg"));
@@ -31,16 +36,22 @@ public class Transactions extends JFrame implements ActionListener{
         image.add(deposit);
 
         // Fast Cash
-        fastCash = new JButton("Fast Cash");
-        fastCash.setBounds(170, 450, 150, 30);
-        fastCash.addActionListener(this);
-        image.add(fastCash);
+        quickCash = new JButton("Quick Cash");
+        quickCash.setBounds(170, 450, 150, 30);
+        quickCash.addActionListener(this);
+        image.add(quickCash);
 
-        // Change Pin
-        changePin = new JButton("Change Pin");
-        changePin.setBounds(170, 485, 150, 30);
-        changePin.addActionListener(this);
-        image.add(changePin);
+        // Change Password
+        changePassword = new JButton("Change Password");
+        changePassword.setBounds(170, 485, 150, 30);
+        changePassword.addActionListener(this);
+        image.add(changePassword);
+
+        // Apply Credit Card
+        applyCreditCard = new JButton("Apply Credit Card");
+        applyCreditCard.setBounds(170, 520, 150, 30);
+        applyCreditCard.addActionListener(this);
+        image.add(applyCreditCard);
 
         // Withdraw
         withdraw = new JButton("Withdraw");
@@ -77,22 +88,29 @@ public class Transactions extends JFrame implements ActionListener{
         if (ae.getSource() == exit){
             System.exit(0);
         } else if (ae.getSource() == deposit){
-            setVisible(false);
-            new Deposit().setVisible(true);
-        } else if (ae.getSource() == fastCash){
-
-        } else if (ae.getSource() == changePin){
-
+            dispose();
+            new Deposit(username, passwordString);
+        } else if (ae.getSource() == quickCash){
+            dispose();
+            new QuickCash(username, passwordString);
+        } else if (ae.getSource() == changePassword){
+            dispose();
+            new ChangePassword(username, passwordString);
+        } else if (ae.getSource() == applyCreditCard){
+            dispose();
+            new ApplyCreditCard(username, passwordString);
         } else if (ae.getSource() == withdraw){
-
+            dispose();
+            new Withdraw(username, passwordString);
         } else if (ae.getSource() == statement){
-
+            dispose();
         } else if (ae.getSource() == balance){
-
+            dispose();
+            new Balance(username, passwordString);
         } 
     }
 
     public static void main(String args[]){
-        new Transactions();
+        new Transactions("", "");
     }
 }

@@ -2,20 +2,22 @@ package bankmanagementsystem;
 
 import java.awt.Image;
 import java.awt.event.ActionListener;
+import java.util.Random;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.sql.*;
 
 public class Login extends JFrame implements ActionListener{
-    
+    User user;
     JLabel label, text, username, password;
-    JButton login, signup, clear;
+    JButton login, signup, clear, forgot;
     JTextField usernameTextField;
     JPasswordField passwordTextField;
 
     Login(){
         setTitle("Atlas Banking Portal");
-
         setLayout(null);
 
         // Icon
@@ -26,13 +28,11 @@ public class Login extends JFrame implements ActionListener{
         label.setBounds(70, 10, 100, 100);
         add(label);
 
-
         // Text
         text = new JLabel("Welcome to Atlas Banking");
         text.setFont(new Font("Osward", Font.BOLD, 30));
         text.setBounds(200, 40, 400, 40);
         add(text);
-
 
         // Username
         username = new JLabel("Username:");
@@ -45,7 +45,6 @@ public class Login extends JFrame implements ActionListener{
         usernameTextField.setFont(new Font("Arial", Font.BOLD, 12));
         add(usernameTextField);
 
-
         // Password
         password = new JLabel("Password:");
         password.setFont(new Font("Raleway", Font.BOLD, 16));
@@ -56,28 +55,32 @@ public class Login extends JFrame implements ActionListener{
         passwordTextField.setBounds(300, 220, 250, 30);
         add(passwordTextField);
 
-
         // Login Button
         login = new JButton("Sign In");
-        login.setBounds(300, 300, 100, 30);
+        login.setBounds(300, 280, 100, 30);
         login.setBackground(Color.BLACK);
         login.setForeground(Color.WHITE);
         login.addActionListener(this);
         add(login);
 
-
         // Clear Button
         clear = new JButton("Clear");
-        clear.setBounds(430, 300, 100, 30);
+        clear.setBounds(450, 280, 100, 30);
         clear.setBackground(Color.BLACK);
         clear.setForeground(Color.WHITE);
         clear.addActionListener(this);
         add(clear);
 
+        forgot = new JButton("Forgot Password");
+        forgot.setBounds(300, 330, 250, 30);
+        forgot.setBackground(Color.BLACK);
+        forgot.setForeground(Color.WHITE);
+        forgot.addActionListener(this);
+        add(forgot);
 
         // Signup Button
         signup = new JButton("Sign Up");
-        signup.setBounds(300, 350, 230, 30);
+        signup.setBounds(300, 380, 250, 30);
         signup.setBackground(Color.BLACK);
         signup.setForeground(Color.WHITE);
         signup.addActionListener(this);
@@ -95,10 +98,32 @@ public class Login extends JFrame implements ActionListener{
             usernameTextField.setText("");
             passwordTextField.setText("");
         } else if (ae.getSource() == login) {
+            Conn conn = new Conn();
+            String username = usernameTextField.getText();
+            char[] password = passwordTextField.getPassword();
+            String passwordString = String.valueOf(password);
 
+            String query = "select * from signup where username = '"+username+"' and password = '"+passwordString+"'";
+            try {
+                ResultSet rs = conn.s.executeQuery(query);
+                if (rs.next()){
+                    dispose();
+                    new Transactions(username, passwordString);
+                }
+            } catch (Exception e){
+                System.out.println(e);
+            }
+        } else if (ae.getSource() == forgot){
+            System.out.println("Goodbye");
         } else if (ae.getSource() == signup){
+            Random ran = new Random();
+            long random = Math.abs((ran.nextLong() % 9000L) + 1000L);
+            user = new User(String.valueOf(random), "", "", "", "", "", "", "", "", "", "", "");
             dispose();
-            new SignupOne(null);
+            new SignupOne(user);
+        } else {
+            dispose();
+            new ForgotLogin();
         }
     }
 

@@ -3,13 +3,17 @@ package bankmanagementsystem;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.*;
 
 public class Deposit extends JFrame implements ActionListener{
 
     JTextField amount;
     JButton deposit, back;
+    String username, passwordString;
 
-    Deposit(){
+    Deposit(String username, String passwordString){
+        this.username = username;
+        this.passwordString = passwordString;
         setLayout(null);
         
         ImageIcon il = new ImageIcon(ClassLoader.getSystemResource("bankmanagementsystem/icons/atm.jpg"));
@@ -54,16 +58,29 @@ public class Deposit extends JFrame implements ActionListener{
 
     public void actionPerformed(ActionEvent ae) {
         if (ae.getSource() == deposit){
-
+            String depositAmount = amount.getText();
+            Date date = new Date();
+            if (depositAmount.equals("")){
+                JOptionPane.showMessageDialog(null, "Please enter an amount to deposit.");
+            } else {
+                try {
+                    Conn conn = new Conn();
+                    String query = "insert into bank values('"+username+"', '"+passwordString+"', '"+date+"', 'Deposit', '"+depositAmount+"')";
+                    conn.s.executeUpdate(query);
+                    JOptionPane.showMessageDialog(null, "$" + depositAmount + " successfully deposited.");
+                    dispose();
+                    new Transactions(username, passwordString);
+                } catch (Exception e){
+                    System.out.println(e);
+                }
+            }
         } else if (ae.getSource() == back){
-            setVisible(false);
-            new Transactions().setVisible(true);
+            dispose();
+            new Transactions(username, passwordString);
         }
     }
 
-
-
     public static void main(String args[]){
-        new Deposit();
+        new Deposit("","");
     }
 }

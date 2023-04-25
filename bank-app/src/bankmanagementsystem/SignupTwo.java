@@ -20,7 +20,6 @@ public class SignupTwo extends JFrame implements ActionListener{
         setLayout(null);
         setTitle("New Account Application - Page 2: Additional Details");
         
-
         additionalDetails = new JLabel("Page 2: Additional Details");
         additionalDetails.setFont(new Font("Raleway", Font.BOLD, 22));
         additionalDetails.setBounds(290, 80, 400, 30);
@@ -58,7 +57,6 @@ public class SignupTwo extends JFrame implements ActionListener{
         add(other);
         add(preferNotDisclose);
 
-
         // Marital Status
         maritalStatus = new JLabel("Marital Status:");
         maritalStatus.setFont(new Font("Raleway", Font.BOLD, 18));
@@ -91,7 +89,6 @@ public class SignupTwo extends JFrame implements ActionListener{
         add(divorced);
         add(widowed);
 
-
         // Own or Rent
         ownOrRent = new JLabel("Own/Rent Property:");
         ownOrRent.setFont(new Font("Raleway", Font.BOLD, 18));
@@ -118,7 +115,6 @@ public class SignupTwo extends JFrame implements ActionListener{
         add(rentProperty);
         add(otherProperty);
 
-
         // Occupation
         occupation = new JLabel("Occupation:");
         occupation.setFont(new Font("Raleway", Font.BOLD, 18));
@@ -131,7 +127,6 @@ public class SignupTwo extends JFrame implements ActionListener{
         occupations.setBackground(Color.WHITE);
         occupations.setBounds(300, 320, 400, 30);
         add(occupations);
-
 
         // Education
         education = new JLabel("Education:");
@@ -146,7 +141,6 @@ public class SignupTwo extends JFrame implements ActionListener{
         educations.setBounds(300, 380, 400, 25);
         add(educations);
 
-
         // Income
         income = new JLabel("Annual Income:");
         income.setFont(new Font("Raleway", Font.BOLD, 18));
@@ -160,7 +154,6 @@ public class SignupTwo extends JFrame implements ActionListener{
         incomes.setBounds(300, 440, 400, 25);
         add(incomes);
 
-
         // Phone Number
         phoneNumber = new JLabel("Phone Number:");
         phoneNumber.setFont(new Font("Raleway", Font.BOLD, 18));
@@ -172,7 +165,6 @@ public class SignupTwo extends JFrame implements ActionListener{
         phoneNumberTextField.setBounds(300, 500, 400, 30);
         add(phoneNumberTextField);
 
-
         // Mobile Number
         mobileNumber = new JLabel("Mobile Number:");
         mobileNumber.setFont(new Font("Raleway", Font.BOLD, 18));
@@ -183,7 +175,6 @@ public class SignupTwo extends JFrame implements ActionListener{
         mobileNumberTextField.setFont(new Font("Raleway", Font.BOLD, 12));
         mobileNumberTextField.setBounds(300, 560, 400, 30);
         add(mobileNumberTextField);
-
 
         // Account Type
         accountType = new JLabel("Account Type:");
@@ -206,7 +197,6 @@ public class SignupTwo extends JFrame implements ActionListener{
         add(checking);
         add(saving);
 
-
         // Previous Button
         previous = new JButton("Previous");
         previous.setBackground(Color.BLACK);
@@ -215,7 +205,6 @@ public class SignupTwo extends JFrame implements ActionListener{
         previous.setBounds(100, 680, 100, 30);
         previous.addActionListener(this);
         add(previous);
-
 
         // Next Button
         next = new JButton("Next");

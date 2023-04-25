@@ -2,7 +2,6 @@ package bankmanagementsystem;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.*;
 import com.toedter.calendar.JDateChooser;
 import java.awt.event.*;
 
@@ -30,7 +29,6 @@ public class SignupOne extends JFrame implements ActionListener{
         personalDetails.setBounds(290, 80, 400, 30);
         add(personalDetails);
 
-
         // First Name
         firstName = new JLabel("First Name:");
         firstName.setFont(new Font("Raleway", Font.BOLD, 18));
@@ -41,7 +39,6 @@ public class SignupOne extends JFrame implements ActionListener{
         firstNameTextField.setFont(new Font("Raleway", Font.BOLD, 12));
         firstNameTextField.setBounds(300, 140, 400, 25);
         add(firstNameTextField);
-
 
         // Last Name
         lastName = new JLabel("Last Name:");
@@ -54,7 +51,6 @@ public class SignupOne extends JFrame implements ActionListener{
         lastNameTextField.setBounds(300, 200, 400, 25);
         add(lastNameTextField);
 
-
         // Date of Birth/DOB
         DOB = new JLabel("Date of Birth:");
         DOB.setFont(new Font("Raleway", Font.BOLD, 18));
@@ -65,7 +61,6 @@ public class SignupOne extends JFrame implements ActionListener{
         dateChooser.setBounds(300, 260, 400, 30);
         dateChooser.setForeground(Color.BLACK);
         add(dateChooser);
-
 
         // Address
         address = new JLabel("Address:");
@@ -78,7 +73,6 @@ public class SignupOne extends JFrame implements ActionListener{
         addressTextField.setBounds(300, 320, 400, 25);
         add(addressTextField);
 
-
         // City
         city = new JLabel("City:");
         city.setFont(new Font("Raleway", Font.BOLD, 18));
@@ -89,7 +83,6 @@ public class SignupOne extends JFrame implements ActionListener{
         cityTextField.setFont(new Font("Raleway", Font.BOLD, 12));
         cityTextField.setBounds(300, 380, 400, 25);
         add(cityTextField);
-
 
         // State
         state = new JLabel("State:");
@@ -102,7 +95,6 @@ public class SignupOne extends JFrame implements ActionListener{
         stateTextField.setBounds(300, 440, 400, 25);
         add(stateTextField);
 
-
         // Zipcode
         zipcode = new JLabel("Zipcode:");
         zipcode.setFont(new Font("Raleway", Font.BOLD, 18));
@@ -114,7 +106,6 @@ public class SignupOne extends JFrame implements ActionListener{
         zipcodeTextField.setBounds(300, 500, 400, 25);
         add(zipcodeTextField);
 
-
         // Email
         email = new JLabel("Email:");
         email.setFont(new Font("Raleway", Font.BOLD, 18));
@@ -125,7 +116,6 @@ public class SignupOne extends JFrame implements ActionListener{
         emailTextField.setFont(new Font("Raleway", Font.BOLD, 12));
         emailTextField.setBounds(300, 560, 400, 25);
         add(emailTextField);
-
 
         // Confirm Email
         confirmEmail = new JLabel("Confirm Email:");
@@ -152,7 +142,7 @@ public class SignupOne extends JFrame implements ActionListener{
         next.setBackground(Color.BLACK);
         next.setForeground(Color.WHITE);
         next.setFont(new Font("Raleway", Font.BOLD, 14));
-        next.setBounds(620, 680, 80, 30);
+        next.setBounds(620, 680, 100, 30);
         next.addActionListener(this);
         add(next);
 
@@ -230,9 +220,9 @@ public class SignupOne extends JFrame implements ActionListener{
         }
     }
     public static void main(String args[]){
-        Random ran = new Random();
-        long random = Math.abs((ran.nextLong() % 9000L) + 1000L);
-        User user = new User(String.valueOf(random), "", "", "", "", "", "", "", "", "");
+        // Random ran = new Random();
+        // long random = Math.abs((ran.nextLong() % 9000L) + 1000L);
+        User user = new User("", "", "", "", "", "", "", "", "", "", "", "");
         new SignupOne(user);
     }
 }

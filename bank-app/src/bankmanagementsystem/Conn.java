@@ -4,14 +4,14 @@ import java.sql.*;
 
 public class Conn {
     
-    Connection c;
+    Connection conn;
     Statement s;
     
     public Conn() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            c = DriverManager.getConnection("jdbc:mysql:///bankmanagementsystem", "root", "Koda031402@");
-            s = c.createStatement();
+            conn = DriverManager.getConnection("jdbc:mysql:///bankmanagementsystem", "root", "Koda031402@");
+            s = conn.createStatement();
 
         } catch (Exception e){
             e.printStackTrace();
