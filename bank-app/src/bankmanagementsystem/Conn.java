@@ -4,13 +4,13 @@ import java.sql.*;
 
 public class Conn {
     
-    Connection conn;
+    Connection c;
     Statement s;
     
     public Conn() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            c = DriverManager.getConnection("jdbc:mysql:///bankmanagementsystem", "root", "Koda031402@");
+            c = DriverManager.getConnection("jdbc:mysql:///bankmanagementsystem", "root", "root");
             s = c.createStatement();
 
         } catch (Exception e){
