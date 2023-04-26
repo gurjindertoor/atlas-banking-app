@@ -76,9 +76,6 @@ public class Login extends JFrame implements ActionListener{
         signup.setBounds(300, 330, 250, 30);
         signup.setBackground(Color.BLACK);
         signup.setForeground(Color.WHITE);
-        // signup.setBorderPainted(false);
-        // signup.setFocusPainted(false);
-        // signup.setContentAreaFilled(false);
         signup.addActionListener(this);
         add(signup);
 

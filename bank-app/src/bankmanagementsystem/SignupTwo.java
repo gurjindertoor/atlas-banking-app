@@ -293,46 +293,47 @@ public class SignupTwo extends JFrame implements ActionListener{
                 JOptionPane.showMessageDialog(null, "Mobile Number Required");
             } else if (accountType == null){
                 JOptionPane.showMessageDialog(null, "Account Type Required");
-            } 
-            
-            Conn conn = new Conn();
-            ResultSet rs1 = conn.s.executeQuery("select count(*) from signup where phoneNumber = '"+phoneNumber+"'");
-            int phoneNumberCount = 0;
-            if (rs1.next()){
-                phoneNumberCount = rs1.getInt(1);
-            }
-            if (phoneNumberCount > 0) {
-                JOptionPane.showMessageDialog(null, "Phone Number already in use.");
             } else {
-                ResultSet rs2 = null;
-                try {
-                    rs2 = conn.s.executeQuery("select count(*) from signup where mobileNumber = '"+mobileNumber+"'");
-                    int mobileNumberCount = 0;
-                    if (rs2.next()){
-                        mobileNumberCount = rs2.getInt(1);
-                    }
-                    if (mobileNumberCount > 0) {
-                        JOptionPane.showMessageDialog(null, "Mobile Number already in use.");
-                    } else {
-                        user.gender = gender;
-                        user.maritalStatus = maritalStatus;
-                        user.ownOrRent = ownOrRent;
-                        user.occupation = occupation;
-                        user.education = education;
-                        user.income = income;
-                        user.phoneNumber = phoneNumberTextField.getText();
-                        user.mobileNumber = mobileNumberTextField.getText();
-                        user.accountType = accountType;
-                        SignupThree signupThree = new SignupThree(user);
-                        dispose();
-                    }
-                } finally {
-                    if (rs2 != null) {
-                        rs2.close();
+                Conn conn = new Conn();
+                ResultSet rs1 = conn.s.executeQuery("select count(*) from signup where phoneNumber = '"+phoneNumber+"'");
+                int phoneNumberCount = 0;
+                if (rs1.next()){
+                    phoneNumberCount = rs1.getInt(1);
+                }
+                if (phoneNumberCount > 0) {
+                    JOptionPane.showMessageDialog(null, "Phone Number already in use.");
+                } else {
+                    ResultSet rs2 = null;
+                    try {
+                        rs2 = conn.s.executeQuery("select count(*) from signup where mobileNumber = '"+mobileNumber+"'");
+                        int mobileNumberCount = 0;
+                        if (rs2.next()){
+                            mobileNumberCount = rs2.getInt(1);
+                        }
+                        if (mobileNumberCount > 0) {
+                            JOptionPane.showMessageDialog(null, "Mobile Number already in use.");
+                        } else {
+                            user.gender = gender;
+                            user.maritalStatus = maritalStatus;
+                            user.ownOrRent = ownOrRent;
+                            user.occupation = occupation;
+                            user.education = education;
+                            user.income = income;
+                            user.phoneNumber = phoneNumberTextField.getText();
+                            user.mobileNumber = mobileNumberTextField.getText();
+                            user.accountType = accountType;
+                            SignupThree signupThree = new SignupThree(user);
+                            dispose();
+                        }
+                    } finally {
+                        if (rs2 != null) {
+                            rs2.close();
+                        }
                     }
                 }
+                rs1.close();
             }
-            rs1.close();
+    
         } catch (Exception e) {
             System.out.println(e);
         }

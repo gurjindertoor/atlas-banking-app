@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.sql.ResultSet;
+import java.util.Date;
+import java.text.SimpleDateFormat;
 
 public class GetStatement extends JFrame implements ActionListener{
     String username, passwordString;
@@ -49,12 +51,52 @@ public class GetStatement extends JFrame implements ActionListener{
             System.out.println(e);
         }
 
+        // try {
+        //     Conn conn = new Conn();
+        //     int balance = 0;
+        //     ResultSet rs = conn.s.executeQuery("select * from bank where username = '"+username+"' and password = '"+passwordString+"'");
+        //     while (rs.next()){
+        //         statements.setText(statements.getText() + "<html>" +rs.getString("date")  + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + rs.getString("type") + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + rs.getString("amount") + "<br><br><html>");
+        //         if (rs.getString("type").equals("Deposit")){
+        //             balance += Integer.parseInt(rs.getString("amount"));
+        //         } else {
+        //             balance -= Integer.parseInt(rs.getString("amount"));
+        //         }
+        //     }
+        //     balanceAmount.setText("Your current account balance is:   $" + balance);
+        // } catch (Exception e) {
+        //     System.out.println(e);
+        // }
+        // try {
+        //     Conn conn = new Conn();
+        //     int balance = 0;
+        //     // ResultSet rs = conn.s.executeQuery("SELECT * FROM bank WHERE username = '"+username+"' AND password = '"+passwordString+"' ORDER BY STR_TO_DATE(date, '%Y-%m-%d') DESC");
+        //     ResultSet rs = conn.s.executeQuery("SELECT * FROM bank WHERE username = '"+username+"' AND password = '"+passwordString+"' ORDER BY STR_TO_DATE(date, '%m/%d/%Y') DESC");
+        //     // ResultSet rs = conn.s.executeQuery("select * from bank where username = '"+username+"' and password = '"+passwordString+"'");
+        //     while (rs.next()){
+        //         statements.setText(statements.getText() + "<html>" +rs.getString("date")  + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + rs.getString("type") + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + rs.getString("amount") + "<br><br><html>");
+        //         if (rs.getString("type").equals("Deposit")){
+        //             balance += Integer.parseInt(rs.getString("amount"));
+        //         } else {
+        //             balance -= Integer.parseInt(rs.getString("amount"));
+        //         }
+        //     }
+        //     balanceAmount.setText("Your current account balance is:   $" + balance);
+        // } catch (Exception e) {
+        //     System.out.println(e);
+        // }
+        
         try {
             Conn conn = new Conn();
             int balance = 0;
-            ResultSet rs = conn.s.executeQuery("select * from bank where username = '"+username+"' and password = '"+passwordString+"'");
+            ResultSet rs = conn.s.executeQuery("SELECT * FROM bank WHERE username = '"+username+"' AND password = '"+passwordString+"' ORDER BY STR_TO_DATE(date, '%a %b %d %T %Z %Y') DESC");
+
+            // ResultSet rs = conn.s.executeQuery("select * from bank where username = '"+username+"' and password = '"+passwordString+"' order by str_to_date(date, '%a %b %d %T %Z %Y') desc");
             while (rs.next()){
-                statements.setText(statements.getText() + "<html>" +rs.getString("date")  + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + rs.getString("type") + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + rs.getString("amount") + "<br><br><html>");
+                String dateString = rs.getString("date");
+                Date date = new SimpleDateFormat("E MMM dd HH:mm:ss z yyyy").parse(dateString);
+                String formattedDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(date);
+                statements.setText("<html>" + formattedDate + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + rs.getString("type") + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + rs.getString("amount") + "<br><br>" + statements.getText() + "<html>");
                 if (rs.getString("type").equals("Deposit")){
                     balance += Integer.parseInt(rs.getString("amount"));
                 } else {
@@ -65,8 +107,8 @@ public class GetStatement extends JFrame implements ActionListener{
         } catch (Exception e) {
             System.out.println(e);
         }
-
-
+        
+        
 
         setSize(400, 600);
         setLocation(80, 20);
