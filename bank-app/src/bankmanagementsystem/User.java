@@ -1,9 +1,9 @@
 package bankmanagementsystem;
 
 public class User {
-    String random, firstName, lastName, dob, address, city, state, zipcode, email, confirmEmail, gender, maritalStatus, ownOrRent, occupation, education, income, phoneNumber, mobileNumber, accountType, username, password;
+    String random, firstName, lastName, dob, address, city, state, zipcode, email, confirmEmail, gender, maritalStatus, ownOrRent, occupation, education, income, phoneNumber, mobileNumber, accountType, username, password, securityQuestion1, securityQuestion2, securityQuestion3;
 
-    User(String random, String firstName, String lastName, String dob, String address, String city, String state, String zipcode, String email, String confirmEmail, String username, String password){
+    User(String random, String firstName, String lastName, String dob, String address, String city, String state, String zipcode, String email, String confirmEmail, String username, String password, String securityQuestion1, String securityQuestion2, String securityQuestion3){
         this.random = random;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -25,5 +25,8 @@ public class User {
         this.accountType = accountType;
         this.username = username;
         this.password = password;
+        this.securityQuestion1 = securityQuestion1;
+        this.securityQuestion2 = securityQuestion2;
+        this.securityQuestion3 = securityQuestion3;
     }
 }

@@ -77,10 +77,10 @@ public class Transactions extends JFrame implements ActionListener{
         exit.addActionListener(this);
         image.add(exit);
 
-        setSize(900,900);
+        setSize(900,855);
         setResizable(false);
         setLocation(300, 0);
-        // setUndecorated(true);
+        setUndecorated(true);
         setVisible(true);
     }
 
@@ -103,7 +103,8 @@ public class Transactions extends JFrame implements ActionListener{
             dispose();
             new Withdraw(username, passwordString);
         } else if (ae.getSource() == statement){
-            dispose();
+            // dispose();
+            new GetStatement(username, passwordString);
         } else if (ae.getSource() == balance){
             dispose();
             new Balance(username, passwordString);

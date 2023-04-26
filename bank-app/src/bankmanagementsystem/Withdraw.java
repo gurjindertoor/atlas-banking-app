@@ -9,7 +9,7 @@ import java.util.*;
 public class Withdraw extends JFrame implements ActionListener{
 
     JTextField amount;
-    JButton withdraw20, withdraw40, withdraw60, withdraw80, withdraw100, withdraw500, withdraw, back;
+    JButton withdraw20, withdraw40, withdraw60, withdraw80, withdraw100, withdraw200, withdraw, back;
     String username, passwordString;
 
     Withdraw(String username, String passwordString){
@@ -36,41 +36,41 @@ public class Withdraw extends JFrame implements ActionListener{
         amount.setBounds(175, 350, 320, 25);
         image.add(amount);
 
-        // Quick Cash 20
+        // Withdraw 20
         withdraw20 = new JButton("$20");
         withdraw20.setBounds(170, 415, 150, 30);
         withdraw20.addActionListener(this);
         image.add(withdraw20);
 
-        // Quick Cash 40
+        // Withdraw 40
         withdraw40 = new JButton("$40");
         withdraw40.setBounds(170, 450, 150, 30);
         withdraw40.addActionListener(this);
         image.add(withdraw40);
 
-        // Quick Cash 60
+        // Withdraw 60
         withdraw60 = new JButton("$60");
         withdraw60.setBounds(170, 485, 150, 30);
         withdraw60.addActionListener(this);
         image.add(withdraw60);
 
-        // Quick Cash 80
+        // Withdraw 80
         withdraw80 = new JButton("$80");
         withdraw80.setBounds(170, 520, 150, 30);
         withdraw80.addActionListener(this);
         image.add(withdraw80);
 
-        // Quick Cash 100
+        // Withdraw 100
         withdraw100 = new JButton("$100");
         withdraw100.setBounds(352, 415, 150, 30);
         withdraw100.addActionListener(this);
         image.add(withdraw100);
 
-        // Quick Cash 500
-        withdraw500 = new JButton("$200");
-        withdraw500.setBounds(352, 450, 150, 30);
-        withdraw500.addActionListener(this);
-        image.add(withdraw500);
+        // Withdraw 500
+        withdraw200 = new JButton("$200");
+        withdraw200.setBounds(352, 450, 150, 30);
+        withdraw200.addActionListener(this);
+        image.add(withdraw200);
 
         withdraw = new JButton("Withdraw");
         withdraw.setBounds(352, 485, 150, 30);
@@ -83,10 +83,10 @@ public class Withdraw extends JFrame implements ActionListener{
         image.add(back);
 
 
-        setSize(900,900);
+        setSize(900,855);
         setResizable(false);
         setLocation(300, 0);
-        // setUndecorated(true);
+        setUndecorated(true);
         setVisible(true);
     }
 
@@ -95,15 +95,28 @@ public class Withdraw extends JFrame implements ActionListener{
             dispose();
             new Transactions(username, passwordString);
         } else {
-            String withdrawAmount;
+            String withdrawAmount = "";
             String withdrawAmountX = amount.getText();
-            if (ae.getSource() == withdraw && !withdrawAmountX.equals("")){
-                withdrawAmount = withdrawAmountX;
-            } else if (ae.getSource() == withdraw){
-                withdrawAmount = withdrawAmountX;
-            } else {
-                withdrawAmount = ((JButton)ae.getSource()).getText().substring(1);
+            
+            if (ae.getSource() == withdraw) {
+                if (withdrawAmountX.equals("")) {
+                    JOptionPane.showMessageDialog(null, "Please enter in quantities of $20.");
+                } else if (Integer.parseInt(withdrawAmountX) % 20 != 0) {
+                    JOptionPane.showMessageDialog(null, "Please enter in quantities of $20.");
+                } else if (Integer.parseInt(withdrawAmountX) == 0) {
+                    JOptionPane.showMessageDialog(null, "Please enter a value greater than 0.");
+                } else if (Integer.parseInt(withdrawAmountX) <= 0) {
+                    JOptionPane.showMessageDialog(null, "Please enter a value greater than 0.");
+                } else {
+                    withdrawAmount = withdrawAmountX;
+                }
+            } else if (ae.getSource() instanceof JButton) {
+                String buttonText = ((JButton) ae.getSource()).getText();
+                if (buttonText.matches("^\\$[1-9][0-9]*$") && Integer.parseInt(buttonText.substring(1)) % 20 == 0) {
+                    withdrawAmount = buttonText.substring(1);
+                }
             }
+            
             Conn conn = new Conn();
             try {
                 ResultSet rs = conn.s.executeQuery("select * from bank where username = '"+username+"' and password = '"+passwordString+"'");
@@ -122,9 +135,9 @@ public class Withdraw extends JFrame implements ActionListener{
                 }
 
                 Date date = new Date();
-                String query = "insert into bank values('"+username+"', '"+passwordString+"', '"+date+"', 'Withdraw', '"+withdrawAmount+"')";
+                String query = "insert into bank values('"+username+"', '"+passwordString+"', '"+date+"', 'Withdrawal', '"+withdrawAmount+"')";
                 conn.s.executeUpdate(query);
-                JOptionPane.showMessageDialog(null, "$" + withdrawAmount + " withdraw successful.");
+                JOptionPane.showMessageDialog(null, "$" + withdrawAmount + " withdrawal successful.");
                 dispose();
                 new Transactions(username, passwordString);
             } catch (Exception e){

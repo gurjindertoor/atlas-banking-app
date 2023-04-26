@@ -4,12 +4,19 @@ import javax.swing.*;
 import java.awt.*;
 import com.toedter.calendar.JDateChooser;
 import java.awt.event.*;
+import java.sql.ResultSet;
+import java.time.LocalDate;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.time.Period;
+import java.time.ZoneId;
 
 public class SignupOne extends JFrame implements ActionListener{
     User user;
 
     JLabel formNumber, personalDetails, firstName, lastName, DOB, address, city, state, zipcode, email, confirmEmail;
-    JTextField firstNameTextField, middleNameTextField, lastNameTextField, addressTextField, cityTextField, stateTextField, zipcodeTextField, emailTextField, confirmEmailTextField;
+    JTextField firstNameTextField, lastNameTextField, dobPlaceHolder, addressTextField, cityTextField, stateTextField, zipcodeTextField, emailTextField, confirmEmailTextField;
     JButton cancel, next;
     JDateChooser dateChooser;
 
@@ -60,6 +67,32 @@ public class SignupOne extends JFrame implements ActionListener{
         dateChooser = new JDateChooser();
         dateChooser.setBounds(300, 260, 400, 30);
         dateChooser.setForeground(Color.BLACK);
+
+        // Add placeholder text
+        dobPlaceHolder = ((JTextField) dateChooser.getDateEditor().getUiComponent());
+        dobPlaceHolder.setText("YYYY-MM-DD");
+        dobPlaceHolder.setForeground(Color.BLACK);
+
+        dobPlaceHolder.addFocusListener(new FocusListener() {
+            private boolean hasFocus = false;
+        
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (!hasFocus) {
+                    dobPlaceHolder.setText("");
+                }
+                hasFocus = true;
+            }
+        
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (!dateChooser.isVisible()) {
+                    dobPlaceHolder.setText("YYYY-MM-DD");
+                    hasFocus = false;
+                }
+            }
+        });
+
         add(dateChooser);
 
         // Address
@@ -161,9 +194,14 @@ public class SignupOne extends JFrame implements ActionListener{
         String city = cityTextField.getText();
         String state = stateTextField.getText();
         String zipcode = zipcodeTextField.getText();
+        // int zipcodeInt = Integer.parseInt(zipcode);
         String email = emailTextField.getText();
         String confirmEmail = confirmEmailTextField.getText();
-
+        String outputDate;
+        LocalDate currentDate = LocalDate.now();
+        Date date = null;
+        DateFormat inputFormat = new SimpleDateFormat("MMM dd, yyyy");
+        DateFormat outputFormat = new SimpleDateFormat("yyyy-MM-dd");
         try {
             if (ae.getSource() == cancel){
                 setVisible(false);
@@ -188,8 +226,7 @@ public class SignupOne extends JFrame implements ActionListener{
             }
             else if (zipcode.equals("")){
                 JOptionPane.showMessageDialog(null, "Zipcode Required");
-            }
-            else if (email.equals("")){
+            } else if (email.equals("")){
                 JOptionPane.showMessageDialog(null, "Email Required");
             }
             else if (!email.contains("@")){
@@ -200,29 +237,45 @@ public class SignupOne extends JFrame implements ActionListener{
             }
             else if (!email.equals(confirmEmail)){
                 JOptionPane.showMessageDialog(null, "Emails are not the same, please check spelling");
-            } else {     
-                user.firstName = firstName;
-                user.lastName = lastName;
-                user.dob = dob;
-                user.address = address;
-                user.city = city;
-                user.state = state;
-                user.zipcode = zipcode;
-                user.email = email;
-                user.confirmEmail = confirmEmail;
+            } 
+            
+            date = inputFormat.parse(dob);
+            LocalDate birthDate = LocalDate.ofInstant(date.toInstant(), ZoneId.systemDefault());
+            Period period = Period.between(birthDate, currentDate);
+        
+            if (period.getYears() < 18) {
+                JOptionPane.showMessageDialog(null, "You must be at least 18 years old to sign up.");
+            } 
+            
+            Conn conn = new Conn();
+            ResultSet rs = conn.s.executeQuery("select count(*) from signup where email = '"+email+"'");
+                if (rs.next()){
+                    int emailCount = rs.getInt(1);
+                    if (emailCount > 0) {
+                        JOptionPane.showMessageDialog(null, "Email already in use.");
+                    } else {
+                        outputDate = outputFormat.format(date);
                 
-                SignupTwo signupTwo = new SignupTwo(user);
-
-                dispose();
-            }
+                        user.firstName = firstName;
+                        user.lastName = lastName;
+                        user.dob = outputDate;
+                        user.address = address;
+                        user.city = city;
+                        user.state = state;
+                        user.zipcode = zipcode;
+                        user.email = email;
+                        user.confirmEmail = confirmEmail; 
+                
+                        SignupTwo signupTwo = new SignupTwo(user);
+                        dispose();
+                    }
+                }
         } catch (Exception e){
             System.out.println(e);
         }
     }
     public static void main(String args[]){
-        // Random ran = new Random();
-        // long random = Math.abs((ran.nextLong() % 9000L) + 1000L);
-        User user = new User("", "", "", "", "", "", "", "", "", "", "", "");
+        User user = new User("", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
         new SignupOne(user);
     }
 }

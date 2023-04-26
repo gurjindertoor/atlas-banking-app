@@ -79,10 +79,10 @@ public class QuickCash extends JFrame implements ActionListener{
         image.add(back);
 
 
-        setSize(900,900);
+        setSize(900,855);
         setResizable(false);
         setLocation(300, 0);
-        // setUndecorated(true);
+        setUndecorated(true);
         setVisible(true);
     }
 
@@ -110,9 +110,9 @@ public class QuickCash extends JFrame implements ActionListener{
                 }
 
                 Date date = new Date();
-                String query = "insert into bank values('"+username+"', '"+passwordString+"', '"+date+"', 'Withdraw', '"+quickCashAmount+"')";
+                String query = "insert into bank values('"+username+"', '"+passwordString+"', '"+date+"', 'Withdrawal', '"+quickCashAmount+"')";
                 conn.s.executeUpdate(query);
-                JOptionPane.showMessageDialog(null, "$" + quickCashAmount + " withdraw successful.");
+                JOptionPane.showMessageDialog(null, "$" + quickCashAmount + " withdrawal successful.");
                 dispose();
                 new Transactions(username, passwordString);
             } catch (Exception e){

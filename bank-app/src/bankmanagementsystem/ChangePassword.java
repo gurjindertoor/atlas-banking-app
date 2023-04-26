@@ -78,10 +78,10 @@ public class ChangePassword extends JFrame implements ActionListener{
         back.addActionListener(this);
         image.add(back);
 
-        setSize(900,900);
+        setSize(900,855);
         setResizable(false);
         setLocation(300, 0);
-        // setUndecorated(true);
+        setUndecorated(true);
         setVisible(true);
     }
 
@@ -113,6 +113,11 @@ public class ChangePassword extends JFrame implements ActionListener{
                     JOptionPane.showMessageDialog(null, "Passwords are not the same.");
                     return;
                 } 
+
+                if (newPassword.length <= 7) {
+                    JOptionPane.showMessageDialog(null, "Password must be at least 7 characters long.");
+                    return;
+                }
                 
                 Conn conn = new Conn();
                 String query1 = "update bank set password = '"+newPasswordString+"' where username = '"+username+"' and password = '"+passwordString+"'";

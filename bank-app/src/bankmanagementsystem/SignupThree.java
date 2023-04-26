@@ -3,6 +3,7 @@ package bankmanagementsystem;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.sql.ResultSet;
 
 public class SignupThree extends JFrame implements ActionListener{
     User user;
@@ -57,70 +58,68 @@ public class SignupThree extends JFrame implements ActionListener{
         add(confirmPasswordField);
 
 
-        // // Security Question 1
-        // String securityQuestionList[] = {"What is your favorite color?", "What is your favorite animal?", "What is your favorite car?", "What is your favorite food?", "What is your favorite sport?"};
+        // Security Question 1
+        String securityQuestionList[] = {"What is your favorite color?", "What is your favorite animal?", "What is your favorite car?", "What is your favorite food?", "What is your favorite sport?"};
 
-        // securityQuestion1 = new JLabel("Security Question 1:");
-        // securityQuestion1.setFont(new Font("Raleway", Font.BOLD, 18));
-        // securityQuestion1.setBounds(100, 320, 200, 30);
-        // add(securityQuestion1);
+        securityQuestion1 = new JLabel("Security Question 1:");
+        securityQuestion1.setFont(new Font("Raleway", Font.BOLD, 18));
+        securityQuestion1.setBounds(100, 320, 200, 30);
+        add(securityQuestion1);
 
-        // securityQuestionBox1 = new JComboBox(securityQuestionList);
-        // securityQuestionBox1.setFont(new Font("Raleway", Font.BOLD, 12));
-        // securityQuestionBox1.setBackground(Color.WHITE);
-        // securityQuestionBox1.setBounds(300, 320, 400, 25);
-        // add(securityQuestionBox1);
+        securityQuestionBox1 = new JComboBox(securityQuestionList);
+        securityQuestionBox1.setFont(new Font("Raleway", Font.BOLD, 12));
+        securityQuestionBox1.setBackground(Color.WHITE);
+        securityQuestionBox1.setBounds(300, 320, 400, 25);
+        add(securityQuestionBox1);
 
-        // securityQuestionAnswer1 = new JTextField();
-        // securityQuestionAnswer1.setFont(new Font("Raleway", Font.BOLD, 12));
-        // securityQuestionAnswer1.setBackground(Color.WHITE);
-        // securityQuestionAnswer1.setBounds(300, 360, 400, 25);
-        // add(securityQuestionAnswer1);
+        securityQuestionAnswer1 = new JTextField();
+        securityQuestionAnswer1.setFont(new Font("Raleway", Font.BOLD, 12));
+        securityQuestionAnswer1.setBackground(Color.WHITE);
+        securityQuestionAnswer1.setBounds(300, 360, 400, 25);
+        add(securityQuestionAnswer1);
 
-        // // Security Question 2
-        // securityQuestion2 = new JLabel("Security Question 2:");
-        // securityQuestion2 = new JLabel("Security Question 1:");
-        // securityQuestion2.setFont(new Font("Raleway", Font.BOLD, 18));
-        // securityQuestion2.setBounds(100, 400, 200, 30);
-        // add(securityQuestion2);
+        // Security Question 2
+        securityQuestion2 = new JLabel("Security Question 2:");
+        securityQuestion2.setFont(new Font("Raleway", Font.BOLD, 18));
+        securityQuestion2.setBounds(100, 400, 200, 30);
+        add(securityQuestion2);
 
-        // securityQuestionBox2 = new JComboBox(securityQuestionList);
-        // securityQuestionBox2.setFont(new Font("Raleway", Font.BOLD, 12));
-        // securityQuestionBox2.setBackground(Color.WHITE);
-        // securityQuestionBox2.setBounds(300, 400, 400, 25);
-        // add(securityQuestionBox2);
+        securityQuestionBox2 = new JComboBox(securityQuestionList);
+        securityQuestionBox2.setFont(new Font("Raleway", Font.BOLD, 12));
+        securityQuestionBox2.setBackground(Color.WHITE);
+        securityQuestionBox2.setBounds(300, 400, 400, 25);
+        add(securityQuestionBox2);
 
-        // securityQuestionAnswer2 = new JTextField();
-        // securityQuestionAnswer2.setFont(new Font("Raleway", Font.BOLD, 12));
-        // securityQuestionAnswer2.setBackground(Color.WHITE);
-        // securityQuestionAnswer2.setBounds(300, 440, 400, 25);
-        // add(securityQuestionAnswer2);
+        securityQuestionAnswer2 = new JTextField();
+        securityQuestionAnswer2.setFont(new Font("Raleway", Font.BOLD, 12));
+        securityQuestionAnswer2.setBackground(Color.WHITE);
+        securityQuestionAnswer2.setBounds(300, 440, 400, 25);
+        add(securityQuestionAnswer2);
 
-        // // Security Question 3
-        // securityQuestion3 = new JLabel("Security Question 3:");
-        // securityQuestion3 = new JLabel("Security Question 1:");
-        // securityQuestion3.setFont(new Font("Raleway", Font.BOLD, 18));
-        // securityQuestion3.setBounds(100, 480, 200, 30);
-        // add(securityQuestion3);
+        // Security Question 3
+        securityQuestion3 = new JLabel("Security Question 3:");
+        securityQuestion3.setFont(new Font("Raleway", Font.BOLD, 18));
+        securityQuestion3.setBounds(100, 480, 200, 30);
+        add(securityQuestion3);
 
-        // securityQuestionBox3 = new JComboBox(securityQuestionList);
-        // securityQuestionBox3.setFont(new Font("Raleway", Font.BOLD, 12));
-        // securityQuestionBox3.setBackground(Color.WHITE);
-        // securityQuestionBox3.setBounds(300, 480, 400, 25);
-        // add(securityQuestionBox3);
+        securityQuestionBox3 = new JComboBox(securityQuestionList);
+        securityQuestionBox3.setFont(new Font("Raleway", Font.BOLD, 12));
+        securityQuestionBox3.setBackground(Color.WHITE);
+        securityQuestionBox3.setBounds(300, 480, 400, 25);
+        add(securityQuestionBox3);
 
-        // securityQuestionAnswer3 = new JTextField();
-        // securityQuestionAnswer3.setFont(new Font("Raleway", Font.BOLD, 12));
-        // securityQuestionAnswer3.setBackground(Color.WHITE);
-        // securityQuestionAnswer3.setBounds(300, 520, 400, 25);
-        // add(securityQuestionAnswer3);
+        securityQuestionAnswer3 = new JTextField();
+        securityQuestionAnswer3.setFont(new Font("Raleway", Font.BOLD, 12));
+        securityQuestionAnswer3.setBackground(Color.WHITE);
+        securityQuestionAnswer3.setBounds(300, 520, 400, 25);
+        add(securityQuestionAnswer3);
 
         // Previous Button
         previous = new JButton("Previous");
         previous.setBackground(Color.BLACK);
         previous.setForeground(Color.WHITE);
         previous.setFont(new Font("Raleway", Font.BOLD, 14));
-        previous.setBounds(100, 320, 100, 30);
+        previous.setBounds(100, 560, 100, 30);
         previous.addActionListener(this);
         add(previous);
 
@@ -129,7 +128,7 @@ public class SignupThree extends JFrame implements ActionListener{
         submit.setBackground(Color.BLACK);
         submit.setForeground(Color.WHITE);
         submit.setFont(new Font("Raleway", Font.BOLD, 14));
-        submit.setBounds(620, 320, 100, 30);
+        submit.setBounds(620, 560, 100, 30);
         submit.addActionListener(this);
         add(submit);
 
@@ -144,6 +143,9 @@ public class SignupThree extends JFrame implements ActionListener{
         String username = usernameTextField.getText();
         char[] password = passwordField.getPassword();
         char[] confirmedPassword = confirmPasswordField.getPassword();
+        String securityQuestion1 = securityQuestionAnswer1.getText();
+        String securityQuestion2 = securityQuestionAnswer2.getText();
+        String securityQuestion3 = securityQuestionAnswer3.getText();
 
         try{
             if (ae.getSource() == previous){
@@ -191,17 +193,33 @@ public class SignupThree extends JFrame implements ActionListener{
                 }
     
             } else if (username.equals("")){
-                JOptionPane.showMessageDialog(null, "Username Required");
+                JOptionPane.showMessageDialog(null, "Username Required.");
             } else if (password.length <= 7){
-                JOptionPane.showMessageDialog(null, "Password must be at least 8 characters");
+                JOptionPane.showMessageDialog(null, "Password must be at least 8 characters.");
             } else if (!new String(password).equals(new String(confirmedPassword))){
-                JOptionPane.showMessageDialog(null, "Passwords are not the same");
+                JOptionPane.showMessageDialog(null, "Passwords are not the same.");
+            } else if (securityQuestion1.equals("")){
+                JOptionPane.showMessageDialog(null, "Security Question 1 Required.");
+            } else if (securityQuestion2.equals("")){
+                JOptionPane.showMessageDialog(null, "Security Question 2 Required.");
+            } else if (securityQuestion3.equals("")){
+                JOptionPane.showMessageDialog(null, "Security Question 3 Required.");
+            } else if (securityQuestionBox1.getSelectedItem().equals(securityQuestionBox2.getSelectedItem()) || securityQuestionBox1.getSelectedItem().equals(securityQuestionBox3.getSelectedItem()) || securityQuestionBox2.getSelectedItem().equals(securityQuestionBox3.getSelectedItem())){
+                JOptionPane.showMessageDialog(null, "Security Question(s) cannot be the same.");
             } else {
                 Conn conn = new Conn();
-                String query = "insert into signup values('"+user.random+"','"+user.firstName+"','"+user.lastName+"','"+user.dob+"','"+user.address+"', '"+user.city+"','"+user.state+"','"+user.zipcode+"','"+user.email+"','"+user.gender+"','"+user.maritalStatus+"','"+user.ownOrRent+"','"+user.occupation+"','"+user.education+"','"+user.income+"','"+user.phoneNumber+"','"+user.mobileNumber+"','"+user.accountType+"', '"+username+"', '"+String.valueOf(password)+"')";
-                conn.s.executeUpdate(query);
-                dispose();
-                new Login();
+                ResultSet rs = conn.s.executeQuery("select count(*) from signup where username = '"+username+"'");
+                    if (rs.next()){
+                        int usernameCount = rs.getInt(1);
+                        if (usernameCount > 0) {
+                            JOptionPane.showMessageDialog(null, "Username already taken.");
+                        } else {
+                            String query = "insert into signup values('"+user.random+"','"+user.firstName+"','"+user.lastName+"','"+user.dob+"','"+user.address+"', '"+user.city+"','"+user.state+"','"+user.zipcode+"','"+user.email+"','"+user.gender+"','"+user.maritalStatus+"','"+user.ownOrRent+"','"+user.occupation+"','"+user.education+"','"+user.income+"','"+user.phoneNumber+"','"+user.mobileNumber+"','"+user.accountType+"', '"+username+"', '"+String.valueOf(password)+"', '"+securityQuestion1+"', '"+securityQuestion2+"', '"+securityQuestion3+"')";
+                            conn.s.executeUpdate(query);
+                            dispose();
+                            new Login();
+                        }
+                    }
             }
         } catch (Exception e){
             System.out.println(e);

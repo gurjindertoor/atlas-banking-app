@@ -66,13 +66,13 @@ public class ApplyCreditCard extends JFrame implements ActionListener{
                 text.setBounds(260, 300, 400, 20);
                 image.add(text);
         
-                JLabel creditLimitLabel = new JLabel("Your credit limit is: $" + String.format("%.2f", Math.ceil(creditLimit)));
+                JLabel creditLimitLabel = new JLabel("Your credit limit is:   $" + String.format("%.2f", Math.ceil(creditLimit)));
                 creditLimitLabel.setFont(new Font("System", Font.BOLD, 12));
                 creditLimitLabel.setForeground(Color.WHITE);
                 creditLimitLabel.setBounds(235, 350, 400, 20);
                 image.add(creditLimitLabel);
 
-                JLabel aprLabel = new JLabel("Your APR is: " + String.format("%.2f", apr * 100) + "%");
+                JLabel aprLabel = new JLabel("Your APR is:   " + String.format("%.2f", apr * 100) + "%");
                 aprLabel.setFont(new Font("System", Font.BOLD, 12));
                 aprLabel.setForeground(Color.WHITE);
                 aprLabel.setBounds(235, 375, 400, 20);
@@ -93,10 +93,10 @@ public class ApplyCreditCard extends JFrame implements ActionListener{
         image.add(back);
 
 
-        setSize(900,900);
+        setSize(900,855);
         setResizable(false);
         setLocation(300, 0);
-        // setUndecorated(true);
+        setUndecorated(true);
         setVisible(true);
     }
 

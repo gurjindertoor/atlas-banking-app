@@ -49,10 +49,10 @@ public class Balance extends JFrame implements ActionListener{
         image.add(back);
 
 
-        setSize(900,900);
+        setSize(900,855);
         setResizable(false);
         setLocation(300, 0);
-        // setUndecorated(true);
+        setUndecorated(true);
         setVisible(true);
     }
 

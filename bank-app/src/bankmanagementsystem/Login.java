@@ -55,36 +55,40 @@ public class Login extends JFrame implements ActionListener{
         passwordTextField.setBounds(300, 220, 250, 30);
         add(passwordTextField);
 
-        // Login Button
-        login = new JButton("Sign In");
-        login.setBounds(300, 280, 100, 30);
-        login.setBackground(Color.BLACK);
-        login.setForeground(Color.WHITE);
-        login.addActionListener(this);
-        add(login);
-
         // Clear Button
         clear = new JButton("Clear");
-        clear.setBounds(450, 280, 100, 30);
+        clear.setBounds(300, 280, 100, 30);
         clear.setBackground(Color.BLACK);
         clear.setForeground(Color.WHITE);
         clear.addActionListener(this);
         add(clear);
 
+        // Login Button
+        login = new JButton("Sign In");
+        login.setBounds(450, 280, 100, 30);
+        login.setBackground(Color.BLACK);
+        login.setForeground(Color.WHITE);
+        login.addActionListener(this);
+        add(login);
+        
+        // Signup Button
+        signup = new JButton("Sign Up");
+        signup.setBounds(300, 330, 250, 30);
+        signup.setBackground(Color.BLACK);
+        signup.setForeground(Color.WHITE);
+        // signup.setBorderPainted(false);
+        // signup.setFocusPainted(false);
+        // signup.setContentAreaFilled(false);
+        signup.addActionListener(this);
+        add(signup);
+
+        // Forgot Password Button
         forgot = new JButton("Forgot Password");
-        forgot.setBounds(300, 330, 250, 30);
+        forgot.setBounds(300, 380, 250, 30);
         forgot.setBackground(Color.BLACK);
         forgot.setForeground(Color.WHITE);
         forgot.addActionListener(this);
         add(forgot);
-
-        // Signup Button
-        signup = new JButton("Sign Up");
-        signup.setBounds(300, 380, 250, 30);
-        signup.setBackground(Color.BLACK);
-        signup.setForeground(Color.WHITE);
-        signup.addActionListener(this);
-        add(signup);
 
         getContentPane().setBackground(Color.WHITE);
 
@@ -103,22 +107,28 @@ public class Login extends JFrame implements ActionListener{
             char[] password = passwordTextField.getPassword();
             String passwordString = String.valueOf(password);
 
-            String query = "select * from signup where username = '"+username+"' and password = '"+passwordString+"'";
+            String query = "select * from signup where binary username = '"+username+"' and binary password = '"+passwordString+"'";
+
             try {
                 ResultSet rs = conn.s.executeQuery(query);
                 if (rs.next()){
                     dispose();
                     new Transactions(username, passwordString);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Invalid credentials, please try again.");
+                    usernameTextField.setText("");
+                    passwordTextField.setText("");
                 }
             } catch (Exception e){
                 System.out.println(e);
             }
         } else if (ae.getSource() == forgot){
-            System.out.println("Goodbye");
+            dispose();
+            new ForgotLogin();
         } else if (ae.getSource() == signup){
             Random ran = new Random();
             long random = Math.abs((ran.nextLong() % 9000L) + 1000L);
-            user = new User(String.valueOf(random), "", "", "", "", "", "", "", "", "", "", "");
+            user = new User(String.valueOf(random), "", "", "", "", "", "", "", "", "", "", "", "","","");
             dispose();
             new SignupOne(user);
         } else {
