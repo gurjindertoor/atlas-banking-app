@@ -37,7 +37,6 @@ The Atlas Banking App is designed with several features to give users a realisti
 - Opening a new bank account
 - Depositing money into the account
 - Withdrawing money from the account
-- Transferring money to other accounts
 - Checking account details
 - Checking transaction history
 - and many more...
@@ -48,7 +47,7 @@ Feel free to contribute to this project. Any contributions you make are greatly 
 
 ## Issues
 
-If you encounter any issues or have questions about the project, please open an issue. We will do our best to help.
+If you encounter any issues or have questions about the project, please email me at gurjindertoor1@gmail.com 
 
 ## License
 
