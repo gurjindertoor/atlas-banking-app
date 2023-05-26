@@ -52,3 +52,21 @@ If you encounter any issues or have questions about the project, please email me
 ## License
 
 This project is licensed under the MIT License. See `LICENSE` for more information.
+
+## Images
+![atlasbank1](https://github.com/gurjindertoor/atlas_banking_app/assets/78512847/280e9524-163d-4d85-98be-e2688abe6239)
+
+![atlasbank2](https://github.com/gurjindertoor/atlas_banking_app/assets/78512847/671c5f18-b59a-41f7-ad11-9b00a2630086)
+
+![atlasbank3](https://github.com/gurjindertoor/atlas_banking_app/assets/78512847/4d07d2e1-6ca3-48c2-9384-78a27876a9fb)
+
+![atlasbank4](https://github.com/gurjindertoor/atlas_banking_app/assets/78512847/86320e24-19ef-4529-927b-0d126ea32414)
+
+![atlasbank5](https://github.com/gurjindertoor/atlas_banking_app/assets/78512847/7ad01f5e-2770-4339-bafd-00fbf1500e98)
+
+![atlasbank6](https://github.com/gurjindertoor/atlas_banking_app/assets/78512847/954b199b-2ca1-4b72-a3bb-78dea866f6c0)
+
+![atlasbank7](https://github.com/gurjindertoor/atlas_banking_app/assets/78512847/e860f18f-bc2a-4d92-8c31-cf19da84ee68)
+
+![atlasbank8](https://github.com/gurjindertoor/atlas_banking_app/assets/78512847/0fae1a44-6dff-448c-8fb0-eb8af80a13a0)
+
